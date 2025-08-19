@@ -31,11 +31,9 @@ app.get("/usuarios/:id", async(request, response)=>{
                 id: Number(request.params.id),
             }
         })
-        if(usuario == null){
-            return response.status(404).json('Error 404, Not Found teste');
-        }
-        return response.json(usuario)
-    }
+        if(!usuario) return response.status(404).send('Error 404, Not Found')
+            return response.json(usuario)
+        }  
     catch (e){
            console.log(e)
     }
