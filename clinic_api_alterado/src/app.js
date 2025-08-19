@@ -14,16 +14,6 @@ app.get('/usuarios', async (request, response) => {
     }
 });
 
-app.get('/pacientes', async(request, response) =>{
-    try{
-        const pacientes = await prismaClient.paciente.findMany();
-        return response.json(pacientes)
-    }
-    catch (e){
-            console.log(e)
-    }
-})
-
 app.get("/usuarios/:id", async(request, response)=>{
     try{
         const usuario = await prismaClient.usuario.findUnique({
@@ -33,9 +23,40 @@ app.get("/usuarios/:id", async(request, response)=>{
         })
         if(!usuario) return response.status(404).send('Error 404, Not Found')
             return response.json(usuario)
-        }  
+    }  
     catch (e){
-           console.log(e)
+        console.log(e)
+    }
+})
+
+app.post("usuarios", async(req, res)=>{
+    try{
+    const { body } = req
+    const usuario = await prismaClient.usuario.create({
+        data: {
+            nome: body.nome,
+            cargo: body.cargo,
+            email: body.email,
+            senha: body.senha,
+        },
+    })
+    return res.status(201).json(usuario)
+    } catch (error){
+        if(error.code === "P2002"){
+            res.status(404).send("Falha ao cadastrar usuário, email já cadastrado")
+        }
+        console.log(e)
+    }
+})
+
+
+app.get('/pacientes', async(request, response) =>{
+    try{
+        const pacientes = await prismaClient.paciente.findMany();
+        return response.json(pacientes)
+    }
+    catch (e){
+            console.log(e)
     }
 })
 
