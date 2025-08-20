@@ -29,6 +29,7 @@ app.get("/usuarios/:id", async(request, response)=>{
     }
 })
 
+// ROTA PARA CADASTRAR UM NOVO USUÀRIO
 app.post("/usuarios", async(req, res)=>{
     try{
     const { body } = req
@@ -49,6 +50,36 @@ app.post("/usuarios", async(req, res)=>{
     }
 })
 
+// ROTA PARA ATUALIZAR USUÀRIOS PELO ID
+app.put("/usuarios/:id", async(req, res)=>{
+    try{
+    const { body, params } = req
+    // const {nome, ...body} = body   
+    await prismaClient.usuario.update({
+        where: {id: Number(params.id)},
+        data: {
+            ...body
+        },
+    })
+        const usuarioAtualizado = await prismaClient.usuario.findUnique({
+            where: {id: Number(params.id)}
+   
+        })
+    res.status(201).json({
+        message: "Usuario Atualizad!",
+        data: usuarioAtualizado
+    })
+    } catch (error) {
+        console.log(error)
+        if(error.code === "P2002"){
+            res.status(404).send("Falha ao atualizar usuário, este email já existe!")
+        }
+        if(error.code === "P2025"){
+            res.status(404).send("Usuário não encontrado. ID inválido")
+        }
+        
+    }  
+})
 
 app.get('/pacientes', async(request, response) =>{
     try{
@@ -73,4 +104,28 @@ app.get("/pacientes/:id", async(request, response) =>{
             console.log(e)
     }
 })
+
+app.post("/pacientes", async(req, res)=>{
+    try{
+    const { body } = req
+    const paciente = await prismaClient.paciente.create({
+        data: {
+            nome: body.nome,
+            cpf: body.cpf,
+            telefone: body.telefone,
+            email: body.email,
+            data_nascimento: new Date(),
+            sexo: body.sexo,
+            responsavel: body.responsavel
+        },
+    })
+    return res.status(201).json(paciente)
+    } catch (error){
+        console.log(error)
+        if(error.code === "P2002"){
+            res.status(404).send("Falha ao cadastrar usuário, email já cadastrado")
+        }
+    }
+})
+
 app.listen(3000, ()=> console.log("Api rodando"))
