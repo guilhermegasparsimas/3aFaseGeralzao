@@ -4,16 +4,7 @@ import { prismaClient } from '../prisma/prisma.js';
 const app = express()
 app.use(express.json())
 
-app.get('/usuarios', async (request, response) => {
-    try{
-        const usuarios = await prismaClient.usuario.findMany();
-        return response.json(usuarios)
-    }
-    catch (e){
-            console.log(e)
-    }
-});
-
+// ROTA PARA BUSCAR USUARIOS PELO ID
 app.get("/usuarios/:id", async(request, response)=>{
     try{
         const usuario = await prismaClient.usuario.findUnique({
@@ -81,6 +72,7 @@ app.put("/usuarios/:id", async(req, res)=>{
     }  
 })
 
+// ROTA PARA LISTAR TODOS OS PACIENTES
 app.get('/pacientes', async(request, response) =>{
     try{
         const pacientes = await prismaClient.paciente.findMany();
@@ -91,6 +83,7 @@ app.get('/pacientes', async(request, response) =>{
     }
 })
 
+// ROTA PARA BUSCAR PACIENTES PELO ID
 app.get("/pacientes/:id", async(request, response) =>{
     try{
         const paciente = await prismaClient.paciente.findUnique({
@@ -105,6 +98,7 @@ app.get("/pacientes/:id", async(request, response) =>{
     }
 })
 
+// ROTA PARA CADASTRAR NOVOS PACIENTES
 app.post("/pacientes", async(req, res)=>{
     try{
     const { body } = req
