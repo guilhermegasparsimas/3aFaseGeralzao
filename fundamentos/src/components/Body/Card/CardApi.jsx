@@ -18,10 +18,12 @@ export const CardApi = ()=>{
         fetch('https://jsonplaceholder.typicode.com/users')
         .then(res => res.json())
         .then(data =>{
-            setUsers(data)
+            const filtrados = data.filter((user)=> user.name.toLowerCase().includes(filtro.toLowerCase()))
+
+            setUsers(filtrados)
         })
         console.log(users)
-    },[])
+    },[filtro])
 
     return(
         <>
@@ -31,6 +33,7 @@ export const CardApi = ()=>{
         <input
         type="text"
         placeholder="Filtrar por nome..."
+        className={styles.inputSearch}
         value={filtro}
         onChange={(e) => setFiltro(e.target.value)}
         />
