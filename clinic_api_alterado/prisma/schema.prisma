@@ -35,7 +35,7 @@ model Prontuario {
 
 model Consulta {
   id                    Int      @id @default(autoincrement())
-  motivo                String
+  motivo      String
   data_consulta         DateTime
   observacoes           String
   medico_responsavel_id Int

@@ -121,7 +121,7 @@ app.get("/pacientes/:id", async (request, response) => {
         const paciente = await prismaClient.paciente.findUnique({
             where: {
                 id: Number(request.params.id),
-            }
+            },
         })
         if (!paciente) return response.status(404).send('Paciente não encontrado. ID inválido')
         return response.json(paciente)
@@ -203,8 +203,112 @@ app.put("/pacientes/:id", async (req, res) => {
         if (error.code === "P2025") {
             res.status(404).send("Paciente não encontrado. ID inválido")
         }
-
+        
     }
 })
 
+// ROTA PARA BUSCAR POR EXAMES
+app.get("/exames", async (req, res) => {
+    try {
+        const exames = await prismaClient.exame.findMany();
+        return res.json(exames)
+    } catch (e) {
+        console.log(e)
+    }
+})
+
+app.get("/exames/:id", async (req, res)=>{
+    try {
+        const exame = await prismaClient.exame.findUnique({
+            where: {
+                id: Number(req.params.id),
+            },
+        })
+        if (!exame) return res.status(404).send('Exame não encontrado. ID inválido')
+            return res.json(exame)
+    } catch (e) {
+        console.log(e)
+    }
+})
+
+// ROTA PARA CADASTRAR NOVOS EXAMES
+app.post("/exames", async (req, res) => {
+    try {
+        const { body } = req
+        const exame = await prismaClient.exame.create({
+            data: {
+                tipo_exame: body.tipo_exame,
+                resultado: body.resultado,
+                data_exame: body.data_exame,
+                link_arquivo: body.link_arquivo,
+                observacoes: body.observacoes,
+                paciente_id: body.paciente_id,
+            },
+        })
+        return res.status(201).json(exame)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+// ROTA PARA ATUALIZAR EXAMES PELO ID
+app.put("/exames/:id", async (req, res) => {
+    try {
+        const { body, params } = req
+        // const {nome, ...body} = body   
+        await prismaClient.exame.update({
+            where: { id: Number(params.id) },
+            data: {
+                ...body
+            },
+        })
+        const exameAtualizado = await prismaClient.exame.findUnique({
+            where: { id: Number(params.id) }
+
+        })
+        res.status(201).json({
+            message: "Exame Atualizado!",
+            data: exameAtualizado
+        })
+    } catch (error) {
+        console.log(error)
+        if (error.code === "P2002") {
+            res.status(404).send("Falha ao atualizarexame, este email já existe!")
+        }
+        if (error.code === "P2025") {
+            res.status(404).send("Exame não encontrado. ID inválido")
+        }
+        
+    }
+})
+
+// ROTA PARA DELETAR EXAMES PELO ID
+app.delete("/exames/:id", async (req, res) => {
+    const { params } = req
+    try {
+        const exameDeletado = await prismaClient.exame.delete({
+            where: {
+                id: Number(params.id),
+            },
+        })
+        res.status(200).json({
+            message: "Exame deletado!",
+            data: exameDeletado
+        })
+    } catch (error) {
+        console.log(error)
+        if (error.code === "P2025") {
+            res.status(404).send("Exame não deletado. ID inválido")
+        }
+    }
+})
+
+app.get("/consultas", async (req, res) => {
+    try {
+        const consultas = await prismaClient.consulta.findMany();
+        return res.json(consultas)
+    } catch (e) {
+        console.log(e)
+    }
+})
 app.listen(3000, () => console.log("Api rodando"))
