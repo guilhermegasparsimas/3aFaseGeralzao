@@ -311,4 +311,57 @@ app.get("/consultas", async (req, res) => {
         console.log(e)
     }
 })
+
+// ROTA PARA CADASTRAR NOVAS CONSULTAS
+app.post("/consultas", async (req, res) => {
+    try {
+        const { body } = req
+        const consulta = await prismaClient.consulta.create({
+            data: {
+                // motivo      String
+                // data_consulta         DateTime
+                // observacoes           String
+                // medico_responsavel_id Int
+                // paciente_id           Int
+                // paciente
+                motivo: body.motivo,
+                data_consulta: body.data_consulta,
+                observacoes: body.observacoes,
+                medico_responsavel_id: body.medico_responsavel_id,
+                paciente_id: body.paciente_id,
+            },
+        })
+        return res.status(201).json(consulta)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+// ROTA PARA ATUALIZAR CONSULTAS PELO ID
+app.put("/consultas/:id", async (req, res) => {
+    try {
+        const { body, params } = req
+        // const {nome, ...body} = body   
+        await prismaClient.consulta.update({
+            where: { id: Number(params.id) },
+            data: {
+                ...body
+            },
+        })
+        const consultaAtualizado = await prismaClient.consulta.findUnique({
+            where: { id: Number(params.id) }
+
+        })
+        res.status(201).json({
+            message: "Consulta Atualizada!",
+            data: consultaAtualizado
+        })
+    } catch (error) {
+        console.log(error)
+        if (error.code === "P2025") {
+            res.status(404).send("Consulta não encontrada. ID inválido")
+        }
+        
+    }
+})
 app.listen(3000, () => console.log("Api rodando"))
