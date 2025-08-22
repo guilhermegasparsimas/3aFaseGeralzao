@@ -6,6 +6,8 @@ const Home = () => {
     <>
         <Header />
         <h1>Página Home</h1>
+        <p></p>
+        <h2>Hello</h2>
     </>
   )
 }
