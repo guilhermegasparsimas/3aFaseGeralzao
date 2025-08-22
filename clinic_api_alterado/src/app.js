@@ -312,6 +312,22 @@ app.get("/consultas", async (req, res) => {
     }
 })
 
+// ROTA PARA BUSCAR CONSULTAS PELO ID
+app.get("/consultas/:id", async (request, response) => {
+    try {
+        const consulta = await prismaClient.consulta.findUnique({
+            where: {
+                id: Number(request.params.id),
+            }
+        })
+        if (!consulta) return response.status(404).send('Error 404, Not Found')
+        return response.json(consulta)
+    }
+    catch (e) {
+        console.log(e)
+    }
+})
+
 // ROTA PARA CADASTRAR NOVAS CONSULTAS
 app.post("/consultas", async (req, res) => {
     try {
@@ -362,6 +378,27 @@ app.put("/consultas/:id", async (req, res) => {
             res.status(404).send("Consulta não encontrada. ID inválido")
         }
         
+    }
+})
+
+// ROTA PARA DELETAR CONSULTAS PELO ID
+app.delete("/consultas/:id", async (req, res) => {
+    const { params } = req
+    try {
+        const consultaDeletado = await prismaClient.consulta.delete({
+            where: {
+                id: Number(params.id),
+            },
+        })
+        res.status(200).json({
+            message: "Consulta deletada!",
+            data: consultaDeletado
+        })
+    } catch (error) {
+        console.log(error)
+        if (error.code === "P2025") {
+            res.status(404).send("Consulta não deletada. ID inválido")
+        }
     }
 })
 app.listen(3000, () => console.log("Api rodando"))
