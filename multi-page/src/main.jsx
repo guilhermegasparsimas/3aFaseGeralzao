@@ -6,16 +6,18 @@ import './index.css'
 // REACT ROUTER
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
+import Home from './pages/Home/Home';
+import Sobre from './pages/Sobre/Sobre';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    Component:<Home></Home>,
+    element:<Home/>,
   },
   {
     path: "sobre",
-    Component: <Sobre></Sobre>
+    element: <Sobre/>
   }
 ]);
 

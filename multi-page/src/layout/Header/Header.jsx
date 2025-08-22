@@ -1,8 +1,20 @@
 import React from 'react'
+import { NavLink } from "react-router";
 
-function Header() {
+const Header = () => {
   return (
-    <div>Header</div>
+    <>
+    <nav>
+        <NavLink to="/" end>
+            Home
+        </NavLink>
+        <p></p>
+        <NavLink to="/sobre" end>
+            Sobre
+        </NavLink>
+
+    </nav>
+    </>
   )
 }
 
