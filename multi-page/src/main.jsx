@@ -11,8 +11,12 @@ import { RouterProvider } from "react-router/dom";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <h2>Hello World</h2>,
+    Component:<Home></Home>,
   },
+  {
+    path: "sobre",
+    Component: <Sobre></Sobre>
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(
