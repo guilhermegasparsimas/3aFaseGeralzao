@@ -303,6 +303,7 @@ app.delete("/exames/:id", async (req, res) => {
     }
 })
 
+// ROTA PARA BUSCAR TODAS CONSULTAS
 app.get("/consultas", async (req, res) => {
     try {
         const consultas = await prismaClient.consulta.findMany();
@@ -320,7 +321,7 @@ app.get("/consultas/:id", async (request, response) => {
                 id: Number(request.params.id),
             }
         })
-        if (!consulta) return response.status(404).send('Error 404, Not Found')
+        if (!consulta) return response.status(404).send('Erro ao encontar consulta. ID inválido')
         return response.json(consulta)
     }
     catch (e) {
@@ -375,7 +376,7 @@ app.put("/consultas/:id", async (req, res) => {
     } catch (error) {
         console.log(error)
         if (error.code === "P2025") {
-            res.status(404).send("Consulta não encontrada. ID inválido")
+            res.status(404).send("Atualização não foi concluida. ID inválido")
         }
         
     }
