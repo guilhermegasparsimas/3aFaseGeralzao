@@ -1,9 +1,9 @@
 import express from 'express';
-import { usuariosRouter } from './Usuarios/Usuarios.js';
-import { prontuariosRouter } from './Prontuarios/Prontuarios.js';
-import { pacientesRouter } from './Pacientes/Pacientes.js';
-import { examesRouter } from './Exames/Exames.js';
-import { consultasRouter } from './Consultas/Consultas.js';
+import { usuariosRouter } from './routes/Usuarios.js';
+import { prontuariosRouter } from './routes/Prontuarios.js';
+import { pacientesRouter } from './routes/Pacientes.js';
+import { examesRouter } from './routes/Exames.js';
+import { consultasRouter } from './routes/Consultas.js';
 
 const app = express()
 app.use(express.json())
