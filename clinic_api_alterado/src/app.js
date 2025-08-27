@@ -132,69 +132,91 @@ app.get("/pacientes/:id", async (request, response) => {
 })
 
 // ROTA PARA CADASTRAR NOVOS PACIENTES
+
 app.post("/pacientes", async (req, res) => {
-    try {
-        const { body } = req
-        const paciente = await prismaClient.paciente.create({
-            data: {
-                nome: body.nome,
-                cpf: body.cpf,
-                telefone: body.telefone,
-                email: body.email,
-                data_nascimento: new Date(),
-                sexo: body.sexo,
-                responsavel: body.responsavel
-            },
-        })
-        return res.status(201).json(paciente)
-    } catch (error) {
-        console.log(error)
-        if (error.code === "P2002") {
-            res.status(404).send("Falha ao cadastrar usuário, email já cadastrado")
-        }
+  try {
+    const { body } = req
+    const bodyKeys = Object.keys(body) // Aqui pegamos todas as chaves do objeto e é gerado um array de strings para a gente, com o formato de ["chave1", "chave2".....]
+    console.log(bodyKeys)
+    for (const key of bodyKeys) {
+      if (key !== "nome" &&
+        key !== "cpf" &&
+        key !== "telefone" &&
+        key !== "email" &&
+        key !== "data_nascimento" &&
+        key !== "sexo" &&
+        key !== "responsavel"
+      ) return res.status(404).send("Colunas não existentes")
     }
+    const pacientes = await prismaClient.paciente.create({
+      data: {
+        ...body,
+        data_nascimento: new Date(body.data_nascimento),
+      },
+    })
+    return res.status(201).json(pacientes)
+  } catch (error) {
+    console.error(error)
+    if (error.code === "P2002") {
+      res.status(404).send("Falha ao cadastrar paciente: Email já cadastrado!")
+    }
+  }
 })
 
 // ROTA PARA DELETAR PACIENTES PELO ID
 app.delete("/pacientes/:id", async (req, res) => {
     const { params } = req
     try {
-        const pacienteDeletado = await prismaClient.paciente.delete({
-            where: {
-                id: Number(params.id),
-            },
-        })
-        res.status(200).json({
-            message: "Paciente deletado!",
-            data: pacienteDeletado
-        })
+      const pacienteDeletado = await prismaClient.paciente.delete({
+        where: {
+          id: Number(params.id),
+        },
+      })
+      res.status(200).json({
+        message: "Paciente deletado!",
+        data: pacienteDeletado
+      })
     } catch (error) {
-        console.log(error)
-        if (error.code === "P2025") {
-            res.status(404).send("Paciente não deletado. ID inválido")
-        }
+      if (error.code == "P2025") {
+        res.status(404).send("Paciente não existe no banco")
+      }
+      if (error.code == "P2003") {
+        res.status(404).send("Paciente não pode ser excluido, pois possui exames vinculados.")
+      }
+      res.status(500).send(error)
     }
-})
+  })
 
 // ROTA PARA ATUALIZAR PACIENTES PELO ID
 app.put("/pacientes/:id", async (req, res) => {
     try {
-        const { body, params } = req
-        // const {nome, ...body} = body   
-        await prismaClient.paciente.update({
-            where: { id: Number(params.id) },
-            data: {
-                ...body
-            },
-        })
-        const pacienteAtualizado = await prismaClient.paciente.findUnique({
-            where: { id: Number(params.id) }
-
-        })
-        res.status(201).json({
-            message: "Paciente Atualizado!",
-            data: pacienteAtualizado
-        })
+       const { body, params } = req
+       const bodyKeys = Object.keys(body)
+       for (const key of bodyKeys) {
+        if (key !== "nome" &&
+            key !== "cpf" &&
+            key !== "telefone" &&
+            key !== "email" &&
+            key !== "data_nascimento" &&
+            key !== "sexo" &&
+            key !== "responsavel"
+        ) return res.status(404).send("Colunas não existentes")
+       }
+       await prismaClient.paciente.update({
+        where: {id: Number(params.id) },
+        data: {
+            ...body
+        },
+       })
+       const pacienteAtualizado = await prismaClient.paciente.findUnique({
+        where: {
+            id: Number(params.id)
+        }
+       })
+       return res.status(201).json({
+        message: "Paciente atualizado!",
+        data: pacienteAtualizado
+       })
     } catch (error) {
         console.log(error)
         if (error.code === "P2002") {
@@ -234,53 +256,74 @@ app.get("/exames/:id", async (req, res)=>{
 // ROTA PARA CADASTRAR NOVOS EXAMES
 app.post("/exames", async (req, res) => {
     try {
-        const { body } = req
-        const exame = await prismaClient.exame.create({
-            data: {
-                tipo_exame: body.tipo_exame,
-                resultado: body.resultado,
-                data_exame: body.data_exame,
-                link_arquivo: body.link_arquivo,
-                observacoes: body.observacoes,
-                paciente_id: body.paciente_id,
-            },
-        })
-        return res.status(201).json(exame)
+      const { body } = req
+      const bodyKeys = Object.keys(body) // Aqui pegamos todas as chaves do objeto e é gerado um array de strings para a gente, com o formato de ["chave1", "chave2".....]
+      console.log(bodyKeys)
+      for (const key of bodyKeys) {
+        if (key !== "tipo_exame" &&
+          key !== "resultado" &&
+          key !== "data_exame" &&
+          key !== "link_arquivo" &&
+          key !== "observacoes" &&
+          key !== "paciente_id" 
+        ) return res.status(404).send("Colunas não existentes")
+      }
+      const exames = await prismaClient.exame.create({
+        data: {
+          ...body,
+          data_exame: new Date(body.data_exame),
+        },
+      })
+      return res.status(201).json(exames)
     } catch (error) {
-        console.log(error)
+      console.error(error)
+      if (error.code === "P2002") {
+        res.status(404).send("Falha ao cadastrar exame!")
+      }
     }
-})
+  })
 
 // ROTA PARA ATUALIZAR EXAMES PELO ID
 app.put("/exames/:id", async (req, res) => {
     try {
-        const { body, params } = req
-        // const {nome, ...body} = body   
-        await prismaClient.exame.update({
-            where: { id: Number(params.id) },
-            data: {
-                ...body
-            },
-        })
-        const exameAtualizado = await prismaClient.exame.findUnique({
-            where: { id: Number(params.id) }
-
-        })
-        res.status(201).json({
-            message: "Exame Atualizado!",
-            data: exameAtualizado
-        })
+      const { body, params } = req
+      const bodyKeys = Object.keys(body)
+      for (const key of bodyKeys) {
+        if (key !== "tipo_exame" &&
+          key !== "resultado" &&
+          key !== "data_exame" &&
+          key !== "link_arquivo" &&
+          key !== "observacoes" &&
+          key !== "paciente_id" 
+        ) return res.status(404).send("Colunas não existentes")
+      }
+      await prismaClient.exame.update({
+        where: { id: Number(params.id) },
+        data: {
+          ...body
+        },
+      })
+      const exameAtualizado = await prismaClient.exame.findUnique({
+        where: {
+          id: Number(params.id)
+        }
+      })
+  
+      return res.status(201).json({
+        message: "Paciente atualizado!",
+        data: exameAtualizado
+      })
+  
     } catch (error) {
-        console.log(error)
-        if (error.code === "P2002") {
-            res.status(404).send("Falha ao atualizarexame, este email já existe!")
-        }
-        if (error.code === "P2025") {
-            res.status(404).send("Exame não encontrado. ID inválido")
-        }
-        
+      if (error.code == "P2025") {
+        res.status(404).send("Usuário não existe no banco")
+      }
+     
+      if (error.code === "P2002") {
+        res.status(404).send("Falha ao cadastrar usuário: Email já cadastrado!")
+      }
     }
-})
+  })
 
 // ROTA PARA DELETAR EXAMES PELO ID
 app.delete("/exames/:id", async (req, res) => {
@@ -332,55 +375,71 @@ app.get("/consultas/:id", async (request, response) => {
 // ROTA PARA CADASTRAR NOVAS CONSULTAS
 app.post("/consultas", async (req, res) => {
     try {
-        const { body } = req
-        const consulta = await prismaClient.consulta.create({
-            data: {
-                // motivo      String
-                // data_consulta         DateTime
-                // observacoes           String
-                // medico_responsavel_id Int
-                // paciente_id           Int
-                // paciente
-                motivo: body.motivo,
-                data_consulta: body.data_consulta,
-                observacoes: body.observacoes,
-                medico_responsavel_id: body.medico_responsavel_id,
-                paciente_id: body.paciente_id,
-            },
-        })
-        return res.status(201).json(consulta)
+      const { body } = req
+      const bodyKeys = Object.keys(body) // Aqui pegamos todas as chaves do objeto e é gerado um array de strings para a gente, com o formato de ["chave1", "chave2".....]
+      console.log(bodyKeys)
+      for (const key of bodyKeys) {
+        if (key !== "motivo" &&
+          key !== "data_consulta" &&
+          key !== "observacoes" &&
+          key !== "medico_responsavel_id" &&
+          key !== "paciente_id" 
+        ) return res.status(404).send("Colunas não existentes")
+      }
+      const consultas = await prismaClient.consulta.create({
+        data: {
+          ...body,
+          data_consulta: new Date(body.data_consulta),
+        },
+      })
+      return res.status(201).json(consultas)
     } catch (error) {
-        console.log(error)
+      console.error(error)
+      if (error.code === "P2002") {
+        res.status(404).send("Falha ao cadastrar consulta!")
+      }
     }
-})
+  })
 
-// ROTA PARA ATUALIZAR CONSULTAS PELO ID
 app.put("/consultas/:id", async (req, res) => {
     try {
-        const { body, params } = req
-        // const {nome, ...body} = body   
-        await prismaClient.consulta.update({
-            where: { id: Number(params.id) },
-            data: {
-                ...body
-            },
-        })
-        const consultaAtualizado = await prismaClient.consulta.findUnique({
-            where: { id: Number(params.id) }
-
-        })
-        res.status(201).json({
-            message: "Consulta Atualizada!",
-            data: consultaAtualizado
-        })
-    } catch (error) {
-        console.log(error)
-        if (error.code === "P2025") {
-            res.status(404).send("Atualização não foi concluida. ID inválido")
+      const { body, params } = req
+      const bodyKeys = Object.keys(body)
+      for (const key of bodyKeys) {
+        if (key !== "motivo" &&
+          key !== "data_consulta" &&
+          key !== "observacoes" &&
+          key !== "medico_responsavel_id" &&
+          key !== "paciente_id" 
+        ) return res.status(404).send("Colunas não existentes")
+      }
+      await prismaClient.consulta.update({
+        where: { id: Number(params.id) },
+        data: {
+          ...body
+        },
+      })
+      const consultaAtualizado = await prismaClient.consulta.findUnique({
+        where: {
+          id: Number(params.id)
         }
-        
+      })
+  
+      return res.status(201).json({
+        message: "Consulta atualizada!",
+        data: consultaAtualizado
+      })
+  
+    } catch (error) {
+      if (error.code == "P2025") {
+        res.status(404).send("consulta não existe no banco")
+      }
+     
+      if (error.code === "P2002") {
+        res.status(404).send("Falha ao cadastrar consulta!")
+      }
     }
-})
+  })
 
 // ROTA PARA DELETAR CONSULTAS PELO ID
 app.delete("/consultas/:id", async (req, res) => {
@@ -399,6 +458,122 @@ app.delete("/consultas/:id", async (req, res) => {
         console.log(error)
         if (error.code === "P2025") {
             res.status(404).send("Consulta não deletada. ID inválido")
+        }
+    }
+})
+
+// ROTA PARA BUSCAR TODOS PRONTUARIOS
+app.get('/prontuarios', async (request, response) => {
+    try {
+        const prontuarios = await prismaClient.prontuario.findMany();
+        return response.json(prontuarios)
+    }
+    catch (e) {
+        console.log(e)
+    }
+})
+
+// ROTA PARA BUSCAR PRONTUARIOS PELO ID
+app.get("/prontuarios/:id", async (request, response) => {
+    try {
+        const prontuario = await prismaClient.prontuario.findUnique({
+            where: {
+                id: Number(request.params.id),
+            }
+        })
+        if (!prontuario) return response.status(404).send('Erro ao encontar prontuario. ID inválido')
+        return response.json(prontuario)
+    }
+    catch (e) {
+        console.log(e)
+    }
+})
+
+// ROTA PARA CADASTRAR NOVOS PRONTUARIOS
+app.post("/prontuarios", async (req, res) => {
+    try {
+      const { body } = req
+      const bodyKeys = Object.keys(body) // Aqui pegamos todas as chaves do objeto e é gerado um array de strings para a gente, com o formato de ["chave1", "chave2".....]
+      console.log(bodyKeys)
+      for (const key of bodyKeys) {
+        if (key !== "descricao" &&
+          key !== "data" &&
+          key !== "medico_responsavel_id" &&
+          key !== "paciente_id" 
+        ) return res.status(404).send("Colunas não existentes")
+      }
+      const prontuarios = await prismaClient.prontuario.create({
+        data: {
+          ...body,
+          data: new Date(body.data),
+        },
+      })
+      return res.status(201).json(prontuarios)
+    } catch (error) {
+      console.error(error)
+      if (error.code === "P2002") {
+        res.status(404).send("Falha ao cadastrar prontuario!")
+      }
+    }
+  })
+
+// ROTA PARA ATUALIZAR PRONTUARIOS PELO ID
+app.put("/prontuarios/:id", async (req, res) => {
+    try {
+      const { body, params } = req
+      const bodyKeys = Object.keys(body)
+      for (const key of bodyKeys) {
+        if (key !== "descricao" &&
+          key !== "data" &&
+          key !== "medico_responsavel_id" &&
+          key !== "paciente_id" 
+        ) return res.status(404).send("Colunas não existentes")
+      }
+      await prismaClient.prontuario.update({
+        where: { id: Number(params.id) },
+        data: {
+          ...body
+        },
+      })
+      const prontuarioAtualizado = await prismaClient.prontuario.findUnique({
+        where: {
+          id: Number(params.id)
+        }
+      })
+  
+      return res.status(201).json({
+        message: "Prontuario atualizado!",
+        data: prontuarioAtualizado
+      })
+  
+    } catch (error) {
+      if (error.code == "P2025") {
+        res.status(404).send("prontuario não existe no banco")
+      }
+     
+      if (error.code === "P2002") {
+        res.status(404).send("Falha ao cadastrar prontuario!")
+      }
+    }
+  })
+  
+// ROTA PARA DELETAR PRONTUARIOS PELO ID
+app.delete("/prontuarios/:id", async (req, res) => {
+    const { params } = req
+    try {
+        const prontuarioDeletado = await prismaClient.prontuario.delete({
+            where: {
+                id: Number(params.id),
+            },
+        })
+        res.status(200).json({
+            message: "Prontuario deletado!",
+            data: prontuarioDeletado
+        })
+    } catch (error) {
+        console.log(error)
+        if (error.code === "P2025") {
+            res.status(404).send("Prontuario não deletado. ID inválido")
         }
     }
 })
