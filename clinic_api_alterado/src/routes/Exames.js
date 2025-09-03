@@ -1,5 +1,4 @@
-import express, { Router } from 'express';
-import { prismaClient } from '../../prisma/prisma.js';
+import  { Router } from 'express';
 import { exameController } from '../controller/Exame/ExameController.js';
 export const examesRouter = Router()
 
