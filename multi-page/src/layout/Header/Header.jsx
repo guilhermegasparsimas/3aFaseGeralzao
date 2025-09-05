@@ -3,20 +3,20 @@ import { NavLink } from "react-router";
 
 const Header = () => {
   return (
-    <>
-    <nav className='flex bg-green-700 gap-4 p-3 justify-center'>
-        <NavLink to="/" end>
+    <header className='flex items-center justify-between p-4 bg-gray-400'>
+    <nav className='flex bg-gray-300 gap-4 p-3 justify-center border-gray rounded-2xl'>
+        <NavLink to="/" end className={({ isActive }) => isActive ? "text-blue-600 font-bold" : "text-gray-800"}>
             Home
         </NavLink>
-        <NavLink to="/sobre" end>
+        <NavLink to="/sobre" end className={({ isActive }) => isActive ? "text-blue-600 font-bold" : "text-gray-800"}>
             Sobre
         </NavLink>
-        <NavLink to="/blog" end>
+        <NavLink to="/blog" end className={({ isActive }) => isActive ? "text-blue-600 font-bold" : "text-gray-800"}>
             Blog
         </NavLink>
 
     </nav>
-    </>
+    </header>
   )
 }
 
