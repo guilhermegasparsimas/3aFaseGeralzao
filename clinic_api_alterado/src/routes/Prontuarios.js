@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import { prismaClient } from '../../prisma/prisma.js';
 import { prontuarioController } from '../controller/Prontuario/ProntuarioController.js';
 export const prontuariosRouter = Router()
 

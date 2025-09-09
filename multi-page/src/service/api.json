@@ -1,0 +1,20 @@
+{
+    "posts": [
+      {
+        "id": "1",
+        "title": "a title",
+        "views": 100,
+        "image": "https://placehold.co/150x100",
+        "description": "O USS Missouri é um couraçado que foi operado pela Marinha dos Estados Unidos e a terceira embarcação da Classe Iowa. Sua construção começou em janeiro de 1941 no Estaleiro Naval de Nova Iorque e foi lançado ao mar em janeiro de 1944, sendo comissionado em junho do mesmo ano."
+       },
+
+      {
+        "id": "2",
+        "title": "another title",
+        "views": 200,
+        "image": "https://placehold.co/100x100",
+        "description": "O Missouri entrou em serviço no fim da Segunda Guerra Mundial e participou das Batalhas de Iwo Jima e Okinawa e de ações de bombardeio contra o arquipélago japonês. Foi em seu tombadilho que a Rendição do Japão foi assinada em 2 de setembro de 1945, encerrando a guerra."
+       }
+    ]
+    
+}
