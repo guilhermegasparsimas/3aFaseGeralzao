@@ -15,11 +15,11 @@ class ConsultaController{
         try {
             const consulta = await prismaClient.consulta.findUnique({
                 where: {
-                    id: Number(request.params.id),
+                    id: Number(req.params.id),
                 }
             })
-            if (!consulta) return response.status(404).send('Erro ao encontar consulta. ID inválido')
-            return response.json(consulta)
+            if (!consulta) return res.status(404).send('Erro ao encontar consulta. ID inválido')
+            return res.json(consulta)
         }
         catch (e) {
             console.log(e)
