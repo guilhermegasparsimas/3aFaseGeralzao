@@ -199,6 +199,34 @@
         "number": "31"
       },
       "id": 6
+    },
+    {
+      "fullName": "Guilherme Gaspar Simas",
+      "gender": "masculino",
+      "birthdate": "2001-02-20",
+      "cpf": "125.472.519-90",
+      "rg": "7591156",
+      "maritalStatus": "solteiro(a)",
+      "phone": "(48)99194-0000",
+      "email": "guisimas0201@gmail.com",
+      "birthplace": "Brasil",
+      "emergencyContact": "(48)99130-1821",
+      "allergies": "Alergia a sujeira",
+      "specialCare": "Cuidado com meu cabelo",
+      "healthInsurance": "Sc Saúde",
+      "insuranceNumber": "12312332132",
+      "insuranceValidity": "2026-02-20",
+      "address": {
+        "cep": "88162-246",
+        "city": "Biguaçu",
+        "state": "SC",
+        "street": "Rua Domingos Antônio Zimmermann",
+        "complement": "apartamento",
+        "neighborhood": "Jardim Janaína",
+        "reference": "Campo de Futebol na frente",
+        "number": "190"
+      },
+      "id": 7
     }
   ],
   "consults": [
@@ -231,6 +259,16 @@
       "medication": "dfjklasjdfjlka djkfaskdf a",
       "dosagePrecautions": "4 vezes ao dia",
       "id": 4
+    },
+    {
+      "patientId": 7,
+      "reason": "Dor nas costas",
+      "date": "2025-09-30",
+      "time": "16:00",
+      "description": "Muita dor nas costas, suspeita de bico de papagaio.",
+      "medication": "Doralgina, Dorflex, Paracetamol",
+      "dosagePrecautions": "3 comprimidos por dia 8/8 horas",
+      "id": 5
     }
   ],
   "exams": [
@@ -297,6 +335,17 @@
       "results": "fdadfadfaf sadf asdf as",
       "patientId": 6,
       "id": 7
+    },
+    {
+      "name": "Exame de Rotina",
+      "date": "2025-09-25",
+      "time": "16:30",
+      "type": "Exame de rotina ",
+      "laboratory": "Santa Luzia",
+      "documentUrl": "https://meet.google.com/mse-zcpm-tqj?pli=1",
+      "results": "Extremamente saudável",
+      "patientId": 7,
+      "id": 8
     }
   ]
 }
