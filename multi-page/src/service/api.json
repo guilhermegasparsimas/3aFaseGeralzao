@@ -1,20 +1,26 @@
 {
     "posts": [
-      {
+      { 
         "id": "1",
-        "title": "a title",
+        "title": "a title with colors",
         "views": 100,
-        "image": "https://placehold.co/150x100",
-        "description": "O USS Missouri é um couraçado que foi operado pela Marinha dos Estados Unidos e a terceira embarcação da Classe Iowa. Sua construção começou em janeiro de 1941 no Estaleiro Naval de Nova Iorque e foi lançado ao mar em janeiro de 1944, sendo comissionado em junho do mesmo ano."
-       },
-
+        "image":"https://placehold.co/250x200",
+        "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae imperdiet libero. Etiam elementum nisi sodales, venenatis urna at, mollis augue. Nam feugiat dolor vel elit dapibus, a lobortis magna tristique. Integer orci nunc, consequat ac vehicula nec, pretium non ipsum. Sed purus justo, tempor ac pharetra et, placerat sed odio. Ut placerat nisi lectus, ut sagittis mauris mollis vel. Aliquam sollicitudin velit orci. Sed quis diam pellentesque, porttitor felis nec, ornare ex. Donec nec diam placerat libero fermentum elementum vitae vitae erat. Vestibulum mollis luctus nisi nec volutpat. Aliquam a accumsan diam. Proin porta nibh sed ornare convallis. Aliquam sodales molestie tellus, at dictum velit." 
+      },
       {
         "id": "2",
         "title": "another title",
         "views": 200,
-        "image": "https://placehold.co/100x100",
-        "description": "O Missouri entrou em serviço no fim da Segunda Guerra Mundial e participou das Batalhas de Iwo Jima e Okinawa e de ações de bombardeio contra o arquipélago japonês. Foi em seu tombadilho que a Rendição do Japão foi assinada em 2 de setembro de 1945, encerrando a guerra."
+        "image":"https://placehold.co/250x200",
+        "description":"In aliquam egestas magna a fermentum. Aenean a malesuada nisi, vel blandit neque. Phasellus dictum quam leo, a imperdiet lorem auctor quis. Cras malesuada, augue at convallis egestas, neque erat lacinia eros, nec cursus turpis nunc eget tellus. Fusce tempus blandit cursus. Etiam at fermentum magna. Fusce vehicula tincidunt nisi eu convallis. Donec elit purus, ullamcorper eu nibh sed, blandit ultricies augue. Phasellus mollis quam sed justo pellentesque interdum. Sed porta consectetur vulputate. Aliquam quam leo, ultrices vitae orci eu, tincidunt ultricies magna. Duis lacinia ullamcorper orci, et cursus lacus viverra interdum."
+       },
+       {
+        "id": "3",
+        "title": "Title colorful",
+        "views": 350,
+        "image":"https://placehold.co/250x200",
+        "description":"In aliquam egestas magna a fermentum. Aenean a malesuada nisi, vel blandit neque. Phasellus dictum quam leo, a imperdiet lorem auctor quis. Cras malesuada, augue at convallis egestas, neque erat lacinia eros, nec cursus turpis nunc eget tellus. Fusce tempus blandit cursus. Etiam at fermentum magna. Fusce vehicula tincidunt nisi eu convallis. Donec elit purus, ullamcorper eu nibh sed, blandit ultricies augue. Phasellus mollis quam sed justo pellentesque interdum. Sed porta consectetur vulputate. Aliquam quam leo, ultrices vitae orci eu, tincidunt ultricies magna. Duis lacinia ullamcorper orci, et cursus lacus viverra interdum."
        }
     ]
     
-}
+  }

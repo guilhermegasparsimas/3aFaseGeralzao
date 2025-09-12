@@ -8,14 +8,11 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server": "npx json-server src/service/api.json"
+    "server":"npx json-server src/service/api.json"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.12",
-<<<<<<< HEAD
-=======
     "json-server": "^1.0.0-beta.3",
->>>>>>> f54ec1ae450a361cc697032f4d99bb06f9b9a1c9
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router": "^7.8.1",

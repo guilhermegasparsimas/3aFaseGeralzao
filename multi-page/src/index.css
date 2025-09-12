@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-@import "tailwindcss";
-=======
 @import "tailwindcss";
 
-@layer components{
+@layer components {
     .card {
         box-shadow: 3px 3px 5px #DDD;
         width: 300px;
@@ -11,4 +8,3 @@
         padding: 10px;
     }
 }
->>>>>>> f54ec1ae450a361cc697032f4d99bb06f9b9a1c9

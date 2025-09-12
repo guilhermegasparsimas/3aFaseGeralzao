@@ -1,9 +1,11 @@
 import React from 'react'
 
+
 const Sobre = () => {
   return (
     <>
-        <h1>Página Sobre</h1>
+
+      <h1>Página Sobre</h1>
     </>
   )
 }

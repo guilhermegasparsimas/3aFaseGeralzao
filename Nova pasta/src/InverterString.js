@@ -5,4 +5,4 @@ function InverterStringPilha(str){
     console.log(stack)
 }
 export default InverterStringPilha;
-InverterStringPilha('Hello')
+InverterStringPilha('Eduarda')
