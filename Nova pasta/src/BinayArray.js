@@ -1,7 +1,8 @@
 function binary(array, target){
     const arrayNew = [].sort(...array)
+    console.log(arrayNew)
     
 }
 
 export default binary;
-binary([1,2,3,4,5,6,7,8,9,10]);
+binary([3,5,6,1,2,3,10,9,8], 4);
