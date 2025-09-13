@@ -1,0 +1,13 @@
+> Estudo <
+Estudar || Frameworks Indicações do Edio || Estudar
+
+	||   ESTUDAR TUDO QUE TA AQUI    ||
+
+Tailwind sheet cheat
+- https://nerdcave.com/tailwind-cheat-sheet
+
+Next.js
+- https://nextjs.org/
+
+TypeScript
+- https://www.typescriptlang.org/
