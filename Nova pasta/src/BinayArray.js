@@ -1,6 +1,8 @@
 function binary(array, target){
     const arrayNew = [].sort(...array)
-    console.log(arrayNew)
+    let baixo = 0;
+    let alto = array.length - 1;
+    
     
 }
 
