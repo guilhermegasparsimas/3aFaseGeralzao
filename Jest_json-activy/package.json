@@ -1,0 +1,12 @@
+{
+  "type": "module",
+  "scripts": {
+    "test:esm": "node --experimental-vm-modules node_modules/jest/bin/jest"
+  },
+  "dependencies": {
+    "json-server": "^0.17.4"
+  },
+  "devDependencies": {
+    "jest": "^30.1.3"
+  }
+}

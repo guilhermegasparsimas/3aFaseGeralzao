@@ -78,7 +78,6 @@ test("PUT /users/:id atualiza nome do usuário", async () => {
 
 // -----------------------------
 // Exercício 6: PATCH atualiza parcialmente
-// -----------------------------
 test("PATCH /users/1 atualiza email", async () => {
     const res = await fetch(`${baseUrl}/users/5`, {
         method: "PATCH",
@@ -120,6 +119,16 @@ test("POST cria usuário e lista não está vazia", async () => {
     const data = await res.json();
     expect(data.length).toBeGreaterThan(0);
 
+});
+test("POST /users", async () => {
+    const novoUsuario = { name: "Ana", email: "ana@example.com" };
+    const res = await fetch(`${baseUrl}/users`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(novoUsuario),
+    });
+    const data = await res.json();
+    expect(data.name).toBe("Ana");
 });
 
 

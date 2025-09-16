@@ -1,0 +1,79 @@
+{
+  "equipamentos": [
+    {
+      "id": 1,
+      "name": "Chave de Fenda",
+      "value": "R$35,00"
+    },
+    {
+      "id": 2,
+      "name": "Moto-Serra",
+      "value": "R$500,00"
+    },
+    {
+      "id": 3,
+      "name": "Martelo",
+      "value": "R$20,00"
+    },
+    {
+      "id": 4,
+      "name": "Prego",
+      "value": "R$20,00"
+    },
+    {
+      "id": 5,
+      "name": "Carrinho de Mão",
+      "value": "R$500,00"
+    },
+    {
+      "name": "Makita Premium",
+      "value": "R$1000,00",
+      "id": 8
+    },
+    {
+      "name": "Soprador Sthil",
+      "value": "R$750,00",
+      "id": 9
+    },
+    {
+      "name": "Makita",
+      "value": "R$450,00",
+      "id": 10
+    },
+    {
+      "name": "Makita Premium",
+      "value": "R$1000,00",
+      "id": 11
+    },
+    {
+      "name": "Teste Fluxo",
+      "value": "R$1000,00",
+      "id": 12
+    },
+    {
+      "name": "Makita",
+      "value": "R$450,00",
+      "id": 13
+    },
+    {
+      "name": "Makita Premium",
+      "value": "R$1000,00",
+      "id": 14
+    },
+    {
+      "name": "Soprador Sthil",
+      "value": "R$1000,00",
+      "id": 15
+    },
+    {
+      "name": "Makita",
+      "value": "R$450,00",
+      "id": 16
+    },
+    {
+      "name": "Makita Premium",
+      "value": "R$1000,00",
+      "id": 17
+    }
+  ]
+}
