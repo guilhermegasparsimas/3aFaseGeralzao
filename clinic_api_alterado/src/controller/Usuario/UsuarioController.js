@@ -68,7 +68,8 @@ class UsuarioController {
                     message: "Usuário atualizado!",
                     data: usuarioAtualizado
                 })
-            } else {
+            } 
+            else {
                 res.status(404).send("Atributos enviados não condizem com o schema")
             }
         } catch (error) {

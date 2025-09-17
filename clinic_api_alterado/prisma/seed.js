@@ -2,24 +2,24 @@ import {PrismaClient} from '@prisma/client'
 const prisma = new PrismaClient();
 
 async function main() {
-  // await prisma.usuario.createMany({
-  //   data: [
-  //     { nome:"Alexandre", 
-  //       email: "Alexandre@gmail.com", 
-  //       senha: "123",
-  //       cargo: "Médico"
-  //     },
-  //   ],
-  // });
+  await prisma.usuario.createMany({
+    data: [
+      { nome:"Alexandre", 
+        email: "Alexandre@gmail.com", 
+        senha: "123",
+        cargo: "Médico"
+      },
+    ],
+  });
 
   await prisma.paciente.create({
     data: {
       nome: "Alexandre de Cássio",
+      sexo: "Masculino",
+      data_nascimento: new Date("1980-12-11"),
       cpf: "432.123.333-12",
       telefone: 952556232,
       email: "AlexandreCássio@email.com",
-      data_nascimento: new Date("1980-12-11"),
-      sexo: "Masculino",
       responsavel: "",
       // Consulta: {
       //   create: [
