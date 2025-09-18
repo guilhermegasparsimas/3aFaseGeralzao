@@ -2,47 +2,220 @@ import {PrismaClient} from '@prisma/client'
 const prisma = new PrismaClient();
 
 async function main() {
-  await prisma.usuario.createMany({
+
+
+  // await prisma.usuario.createMany({
+  //   data: [
+  //     { nome:"Alexandre", 
+  //       email: "Alexandre@gmail.com", 
+  //       senha: "123",
+  //       cargo: "Médico"
+  //     },
+  //   ],
+  // });
+
+  await prisma.exame.createMany({
     data: [
-      { nome:"Alexandre", 
-        email: "Alexandre@gmail.com", 
-        senha: "123",
-        cargo: "Médico"
+      {
+        data_exame: "Exame Psicológico",
+        link_arquivo: "http://Psicologico.com",
+        observacoes: "Teste psicologico para automoveis",
+        paciente_id: 1,
+        resultado: "Muito bom",
+        tipo_exame: "Errorrr"
       },
-    ],
+      {
+        data_exame: "Exame Psicológico",
+        link_arquivo: "http://Psicologico.com",
+        observacoes: "Teste psicologico para automoveis",
+        paciente_id: 1,
+        resultado: "Muito bom",
+        tipo_exame: "Errorrr"
+      },
+      {
+        data_exame: "Exame Psicológico",
+        link_arquivo: "http://Psicologico.com",
+        observacoes: "Teste psicologico para automoveis",
+        paciente_id: 1,
+        resultado: "Muito bom",
+        tipo_exame: "Errorrr"
+      },
+      {
+        data_exame: "Exame Psicológico",
+        link_arquivo: "http://Psicologico.com",
+        observacoes: "Teste psicologico para automoveis",
+        paciente_id: 1,
+        resultado: "Muito bom",
+        tipo_exame: "Errorrr"
+      },
+      {
+        data_exame: "Exame Psicológico",
+        link_arquivo: "http://Psicologico.com",
+        observacoes: "Teste psicologico para automoveis",
+        paciente_id: 1,
+        resultado: "Muito bom",
+        tipo_exame: "Errorrr"
+      },
+      {
+        data_exame: "Exame Psicológico",
+        link_arquivo: "http://Psicologico.com",
+        observacoes: "Teste psicologico para automoveis",
+        paciente_id: 1,
+        resultado: "Muito bom",
+        tipo_exame: "Errorrr"
+      },
+    ]
+  });
+  await prisma.prontuario.createMany({
+    data: [
+      {
+       data: "2021-12-12T00:00:00Z",
+       descricao: "Prontuário",
+       medico_responsavel_id: 1,
+       paciente_id: 1
+      },
+      {
+       data: "2021-12-12T00:00:00Z",
+       descricao: "Prontuário",
+       medico_responsavel_id: 1,
+       paciente_id: 1
+      },
+      {
+       data: "2021-12-12T00:00:00Z",
+       descricao: "Prontuário",
+       medico_responsavel_id: 1,
+       paciente_id: 1
+      },
+      {
+       data: "2021-12-12T00:00:00Z",
+       descricao: "Prontuário",
+       medico_responsavel_id: 1,
+       paciente_id: 1
+      },
+      {
+       data: "2021-12-12T00:00:00Z",
+       descricao: "Prontuário",
+       medico_responsavel_id: 1,
+       paciente_id: 1
+      },
+      {
+       data: "2021-12-12T00:00:00Z",
+       descricao: "Prontuário",
+       medico_responsavel_id: 1,
+       paciente_id: 1
+      },
+      {
+       data: "2021-12-12T00:00:00Z",
+       descricao: "Prontuário",
+       medico_responsavel_id: 1,
+       paciente_id: 1
+      },
+      {
+       data: "2021-12-12T00:00:00Z",
+       descricao: "Prontuário",
+       medico_responsavel_id: 1,
+       paciente_id: 1
+      },
+      {
+       data: "2021-12-12T00:00:00Z",
+       descricao: "Prontuário",
+       medico_responsavel_id: 1,
+       paciente_id: 1
+      },
+    ]
   });
 
-  await prisma.paciente.create({
-    data: {
-      nome: "Alexandre de Cássio",
-      sexo: "Masculino",
-      data_nascimento: new Date("1980-12-11"),
-      cpf: "432.123.333-12",
-      telefone: 952556232,
-      email: "AlexandreCássio@email.com",
-      responsavel: "",
-      // Consulta: {
-      //   create: [
-      //     {
-      //       motivo: "Dor nas costas",
-      //       data_consulta: new Date("2023-08-25"),
-      //       observacoes: "Ibuprofeno 3 vezes ao dia",
-      //       medico_responsavel_id: 
-      //     }
-      //   ]
-      // },
-      // Exame: {
-      //   create: [
-      //     {
-      //       tipo: "Densiometro",
-      //       data_exame: new Date("2023-08-25"),
-      //       resultado: "deu ruim",
-      //       link_arquivo: "url.com.br/exame.pdf",
-      //       observacoes: ""
-      //     }
-      //   ]
-      // }
-    },
+  await prisma.paciente.createMany({
+    data: [
+      {
+        cpf: "125.472.519-90",
+        data_nascimento: "2021-12-12T00:00:00Z",
+        email: "guisimas@gmail.com",
+        nome: "guilherme",
+        sexo: "masculino",
+        telefone: 121434,     
+      },
+      {
+        cpf: "125.472.519-90",
+        data_nascimento: "2021-12-12T00:00:00Z",
+        email: "guisimas@gmail.com",
+        nome: "guilherme",
+        sexo: "masculino",
+        telefone: 121434,     
+      },
+      {
+        cpf: "125.472.519-90",
+        data_nascimento: "2021-12-12T00:00:00Z",
+        email: "guisimas@gmail.com",
+        nome: "guilherme",
+        sexo: "masculino",
+        telefone: 121434,     
+      },
+      {
+        cpf: "125.472.519-90",
+        data_nascimento: "2021-12-12T00:00:00Z",
+        email: "guisimas@gmail.com",
+        nome: "guilherme",
+        sexo: "masculino",
+        telefone: 121434,     
+      },
+      {
+        cpf: "125.472.519-90",
+        data_nascimento: "2021-12-12T00:00:00Z",
+        email: "guisimas@gmail.com",
+        nome: "guilherme",
+        sexo: "masculino",
+        telefone: 121434,     
+      },
+      {
+        cpf: "125.472.519-90",
+        data_nascimento: "2021-12-12T00:00:00Z",
+        email: "guisimas@gmail.com",
+        nome: "guilherme",
+        sexo: "masculino",
+        telefone: 121434,     
+      },
+      {
+        cpf: "125.472.519-90",
+        data_nascimento: "2021-12-12T00:00:00Z",
+        email: "guisimas@gmail.com",
+        nome: "guilherme",
+        sexo: "masculino",
+        telefone: 121434,     
+      },
+      {
+        cpf: "125.472.519-90",
+        data_nascimento: "2021-12-12T00:00:00Z",
+        email: "guisimas@gmail.com",
+        nome: "guilherme",
+        sexo: "masculino",
+        telefone: 121434,     
+      },
+      {
+        cpf: "125.472.519-90",
+        data_nascimento: "2021-12-12T00:00:00Z",
+        email: "guisimas@gmail.com",
+        nome: "guilherme",
+        sexo: "masculino",
+        telefone: 121434,     
+      },
+      {
+        cpf: "125.472.519-90",
+        data_nascimento: "2021-12-12T00:00:00Z",
+        email: "guisimas@gmail.com",
+        nome: "guilherme",
+        sexo: "masculino",
+        telefone: 121434,     
+      },
+      {
+        cpf: "125.472.519-90",
+        data_nascimento: "2021-12-12T00:00:00Z",
+        email: "guisimas@gmail.com",
+        nome: "guilherme",
+        sexo: "masculino",
+        telefone: 121434,     
+      },
+    ]
   });
 }
 
