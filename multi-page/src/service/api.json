@@ -20,6 +20,13 @@
         "views": 350,
         "image":"https://placehold.co/250x200",
         "description":"In aliquam egestas magna a fermentum. Aenean a malesuada nisi, vel blandit neque. Phasellus dictum quam leo, a imperdiet lorem auctor quis. Cras malesuada, augue at convallis egestas, neque erat lacinia eros, nec cursus turpis nunc eget tellus. Fusce tempus blandit cursus. Etiam at fermentum magna. Fusce vehicula tincidunt nisi eu convallis. Donec elit purus, ullamcorper eu nibh sed, blandit ultricies augue. Phasellus mollis quam sed justo pellentesque interdum. Sed porta consectetur vulputate. Aliquam quam leo, ultrices vitae orci eu, tincidunt ultricies magna. Duis lacinia ullamcorper orci, et cursus lacus viverra interdum."
+       },
+       {
+        "id": "4",
+        "title": "Title with Elegance.",
+        "views": 350,
+        "image":"https://placehold.co/250x200",
+        "description":"Para atualizar uma string também é necessário restart no JSON server. Eu sou elegante de mais para processar apenas um texto sem algum sentido beneficiente aos meus leitores."
        }
     ]
     
