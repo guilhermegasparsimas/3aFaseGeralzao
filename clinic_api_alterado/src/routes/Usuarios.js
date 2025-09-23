@@ -5,6 +5,7 @@ export const usuarioRouter = Router()
 usuarioRouter.get('/usuarios', usuarioController.getTodosOsUsuarios);
 
 usuarioRouter.get("/usuarios/:id", usuarioController.getUsuarioPorId)
+usuarioRouter.get("/usuarios/byemail/:email", usuarioController.getUsuarioPorEmail)
 
 usuarioRouter.post("/usuarios", usuarioController.criarUsuarios)
 
