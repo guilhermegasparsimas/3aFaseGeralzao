@@ -7,7 +7,8 @@
   "scripts": {
     "start": "npx nodemon src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seed": "node prisma/seed.js"
+    "seed": "node prisma/seed.js",
+    "test-mod": "node --experimental-vm-modules node_modules/jest/bin/jest"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,7 @@
     "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
+    "jest": "^30.2.0",
     "prisma": "^6.13.0"
   }
 }

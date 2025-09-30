@@ -19,13 +19,13 @@ class AuthController {
         res
     ) {
         try {
-            const { email, password, name } = req.body;
+            const { nome, email, senha, cargo } = req.body;
             // Validação básica
-            if (!email || !password) {
+            if (!email || !senha) {
                 return res.status(400).json({ error: "Email e senha são obrigatórios" });
             }
             // Verificar se usuário já existe
-            const existingUser = await prismaClient.user.findUnique({
+            const existingUser = await prismaClient.usuario.findUnique({
                 where: { email },
             });
             if (existingUser) {
@@ -33,14 +33,15 @@ class AuthController {
             }
             // Hash da senha com bcrypt
             const saltRounds = 10;
-            const hashedPassword = await bcrypt.hash(password, saltRounds);
+            const hashedPassword = await bcrypt.hash(senha, saltRounds);
             // Criar usuário no banco de dados
-            const user = await prismaClient.user.create({
-                data: { email, password: hashedPassword, name: name || null },
+            const user = await prismaClient.usuario.create({
+                data: { nome: nome || null, email, senha: hashedPassword, cargo },
                 select: {
                     id: true,
                     email: true,
-                    name: true,
+                    nome: true,
+                    cargo: true
                 },
             });
             return res.status(201).json(user);
@@ -53,23 +54,23 @@ class AuthController {
 
     async login(req, res) {
         try {
-            const { email, password } = req.body;
-            const user = await prismaClient.user.findUnique({ where: { email } }); // Verificar se usuário existe e senha está correta
-            if (!user || !(await bcrypt.compare(password, user.password))) {
+            const { email, senha } = req.body;
+            const user = await prismaClient.usuario.findUnique({ where: { email } }); // Verificar se usuário existe e senha está correta
+            if (!user || !(await bcrypt.compare(senha, user.senha))) {
                 return res.status(401).json({ error: "Credenciais inválidas" });
             }
             // Gerar access token (curta duração)
             const accessToken = signAccessToken({
                 userId: user.id,
                 email: user.email,
-                name: user.name,
+                nome: user.nome,
             });
 
             // Gerar refresh token (longa duração)
             const refreshToken = signRefreshToken({
                 userId: user.id,
                 email: user.email,
-                name: user.name,
+                nome: user.nome,
             });
             // Armazenar refresh token no banco de dados
             const expiresAt = new Date();
@@ -89,7 +90,7 @@ class AuthController {
                 user: {
                     id: user.id,
                     email: user.email,
-                    name: user.name,
+                    nome: user.nome,
                 },
             });
         } catch (error) {

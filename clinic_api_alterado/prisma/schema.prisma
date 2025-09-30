@@ -15,6 +15,7 @@ model Usuario {
   senha      String
   cargo      String
   Prontuario Prontuario[]
+  Token      Token[]
 
   @@map("usuario")
 }
@@ -33,7 +34,7 @@ model Prontuario {
 
 model Consulta {
   id                    Int      @id @default(autoincrement())
-  motivo      String
+  motivo                String
   data_consulta         DateTime
   observacoes           String
   medico_responsavel_id Int
@@ -70,4 +71,15 @@ model Exame {
   paciente     Paciente @relation(fields: [paciente_id], references: [id])
 
   @@map("exame")
+}
+
+model Token {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique
+  userId    Int
+  expireAst DateTime
+  createAt  DateTime @default(now())
+  usuario   Usuario  @relation(fields: [userId], references: [id])
+
+  @@map("token")
 }
