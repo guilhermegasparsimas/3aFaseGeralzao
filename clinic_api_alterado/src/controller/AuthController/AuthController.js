@@ -39,8 +39,9 @@ class AuthController {
                 data: { nome: nome || null, email, senha: hashedPassword, cargo },
                 select: {
                     id: true,
-                    email: true,
                     nome: true,
+                    email: true,
+                    senha: true,
                     cargo: true
                 },
             });
