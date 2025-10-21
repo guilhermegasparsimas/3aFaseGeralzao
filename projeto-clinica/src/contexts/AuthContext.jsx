@@ -22,6 +22,11 @@ const AuthContext = createContext();
     const logout = () => {
         localStorage.removeItem("email")
         setUser("")
+        toast.success("Logout realizado com sucesso!", {
+            autoClose: 3000,
+            hideProgressBar: true,
+            pauseOnHover: false
+        })
     }
 
     const funcaoX = () => {

@@ -9,11 +9,21 @@ import { AuthProvider } from './contexts/AuthContext';
 
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import DashboardLayout from './layouts/DashboardLayout';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Login />
+  },
+  {
+    path: "dashboard",
+    element: (
+      <PrivateRoute>
+          <DashboardLayout />
+      </PrivateRoute>
+    )
   }
 ])
 
