@@ -32,6 +32,11 @@
       "id": "a29f",
       "email": "Luana@email.com",
       "password": "marcelo123"
+    },
+    {
+      "id": "3b8d",
+      "email": "seila@email.com",
+      "password": "seila1234"
     }
   ]
 }

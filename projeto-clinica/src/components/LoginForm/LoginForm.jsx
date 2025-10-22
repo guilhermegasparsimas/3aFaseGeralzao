@@ -10,13 +10,10 @@ import RegisterUser from "../RegisterUser/RegisterUser";
 const LoginForm = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-
     //contexto
     const { login, user } = useAuth()
-
     // rotas com react router
     const navigate = useNavigate()
-
     // modal
     const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -31,10 +28,12 @@ const LoginForm = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.get('http://localhost:3000/users', {
-                params: { email, password }
-            })
-            // console.log(response)
+            const data = {
+                email: email,
+                senha: password
+            }
+            const response = await axios.post('http://localhost:4000/auth/login', data)
+            console.log(response)
             if (response.data.length === 0) {
                 console.log("Usuário não encontrado!")
                 toast.error('Usuário não encontrado. Verifique email e senha', {

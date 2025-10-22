@@ -44,6 +44,8 @@ model Consulta {
   @@map("consulta")
 }
 
+
+
 model Paciente {
   id              Int          @id @default(autoincrement())
   nome            String
@@ -60,9 +62,17 @@ model Paciente {
   @@map("paciente")
 }
 
+enum TipoExame {
+  SANGUE
+  URINA
+  RAIOX
+  ULTRASSOM
+  RESSONANCIA
+}
+
 model Exame {
   id           Int      @id @default(autoincrement())
-  tipo_exame   String
+  tipo_exame   TipoExame
   resultado    String
   data_exame   DateTime
   link_arquivo String

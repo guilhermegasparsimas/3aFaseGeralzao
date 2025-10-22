@@ -1,14 +1,10 @@
-// Verificar funcionamento correto dos endpoints criados neste código abaixo @@ 
-// Criar uma tabela no schema prisma para o TOKEN @@
-// Create a count, login and logout @@
-
 import bcrypt from "bcrypt";
-import { prismaClient } from "../../prisma/prisma.ts";
+import { prismaClient } from "../../../prisma/prisma.js";
 import {
     signAccessToken,
     signRefreshToken,
     verifyRefresh,
-} from "../utils/jwt.ts";
+} from "../../utils/jwt.js";
 
 
 class AuthController {
@@ -19,7 +15,7 @@ class AuthController {
         res
     ) {
         try {
-            const { nome, email, senha, cargo } = req.body;
+            const { email, senha, nome, cargo } = req.body;
             // Validação básica
             if (!email || !senha) {
                 return res.status(400).json({ error: "Email e senha são obrigatórios" });
@@ -28,6 +24,7 @@ class AuthController {
             const existingUser = await prismaClient.usuario.findUnique({
                 where: { email },
             });
+            console.log(existingUser)
             if (existingUser) {
                 return res.status(409).json({ error: "Usuário já existe" });
             }
@@ -36,13 +33,11 @@ class AuthController {
             const hashedPassword = await bcrypt.hash(senha, saltRounds);
             // Criar usuário no banco de dados
             const user = await prismaClient.usuario.create({
-                data: { nome: nome || null, email, senha: hashedPassword, cargo },
+                data: { email, senha: hashedPassword, nome: nome || null, cargo: cargo },
                 select: {
                     id: true,
-                    nome: true,
                     email: true,
-                    senha: true,
-                    cargo: true
+                    nome: true,
                 },
             });
             return res.status(201).json(user);
@@ -81,7 +76,7 @@ class AuthController {
                 data: {
                     token: refreshToken,
                     type: "refresh",
-                    userId: user.id,
+                    usuarioId: user.id,
                     expiresAt,
                 },
             });
@@ -101,34 +96,33 @@ class AuthController {
         return res;
     };
 
-    // desabilitado pq o professor vai fazer junto
-    // async refresh(
-    //     req,
-    //     res
-    // ) {
-    //     const { refreshToken } = req.body;
-    //     const storedRefreshToken = await prismaClient.token.findFirst({
-    //         where: { token: refreshToken },
-    //     });
-    //     if (
-    //         !storedRefreshToken ||
-    //         storedRefreshToken.revoked ||
-    //         storedRefreshToken.expiresAt < new Date()
-    //     )
-    //         return res.status(401).json({ error: "invalid refresh token" });
+    async refresh(
+        req,
+        res
+    ) {
+        const { refreshToken } = req.body;
+        const storedRefreshToken = await prismaClient.token.findFirst({
+            where: { token: refreshToken },
+        });
+        if (
+            !storedRefreshToken ||
+            storedRefreshToken.revoked ||
+            storedRefreshToken.expiresAt < new Date()
+        )
+            return res.status(401).json({ error: "invalid refresh token" });
 
-    //     try {
-    //         const payload = verifyRefresh(refreshToken);
-    //         const accessToken = signAccessToken({
-    //             userId: payload.id,
-    //             email: payload.email,
-    //             name: payload.name,
-    //         });
-    //         return res.json({ accessToken });
-    //     } catch {
-    //         return res.status(401).json({ error: "invalid refresh token" });
-    //     }
-    // };
+        try {
+            const payload = verifyRefresh(refreshToken);
+            const accessToken = signAccessToken({
+                userId: payload.userId,
+                email: payload.email,
+                nome: payload.nome,
+            });
+            return res.json({ accessToken });
+        } catch {
+            return res.status(401).json({ error: "invalid refresh token" });
+        }
+    };
 
     async logout(
         req,
