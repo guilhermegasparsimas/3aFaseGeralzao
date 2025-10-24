@@ -1,11 +1,12 @@
 import { Outlet } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import SideMenu from "../components/SideMenu/SideMenu";
 
 const DashboardLayout = () => {
     const { user, logout } = useAuth()
     return (
         <div className="flex min-h-screen bg-gray-100">
-            <div>Side Menu</div>
+            <div><SideMenu /></div>
 
             {/* Conteúdo Principal */}
             <main className="flex-1 flex-col">
