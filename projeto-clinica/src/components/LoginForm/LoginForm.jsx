@@ -17,6 +17,8 @@ const LoginForm = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
 
 
+
+
     useEffect(() => {
         if (user) {
             navigate('/dashboard')
@@ -30,8 +32,9 @@ const LoginForm = () => {
         e.preventDefault()
 
         try {
-            const response = await axios.get('http://localhost:3000/usuarios', {
-                params: { email, password }
+            const response = await axios.post('http://localhost:3000/auth/login', {
+                email: email,
+                senha: password
             })
 
             // console.log(response)

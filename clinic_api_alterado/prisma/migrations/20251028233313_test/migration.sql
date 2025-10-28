@@ -22,7 +22,7 @@ CREATE TABLE "public"."prontuario" (
 
 -- CreateTable
 CREATE TABLE "public"."consulta" (
-    "id" SERIAL NOT NULL,bb
+    "id" SERIAL NOT NULL,
     "motivo" TEXT NOT NULL,
     "data_consulta" TIMESTAMP(3) NOT NULL,
     "observacoes" TEXT NOT NULL,
@@ -59,6 +59,18 @@ CREATE TABLE "public"."exame" (
     CONSTRAINT "exame_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "public"."token" (
+    "id" SERIAL NOT NULL,
+    "token" VARCHAR(255) NOT NULL,
+    "type" TEXT NOT NULL,
+    "usuarioId" INTEGER NOT NULL,
+    "revoked" BOOLEAN NOT NULL DEFAULT false,
+    "expiresAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "token_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "usuario_email_key" ON "public"."usuario"("email");
 
@@ -72,4 +84,10 @@ ALTER TABLE "public"."prontuario" ADD CONSTRAINT "prontuario_medico_responsavel_
 ALTER TABLE "public"."consulta" ADD CONSTRAINT "consulta_paciente_id_fkey" FOREIGN KEY ("paciente_id") REFERENCES "public"."paciente"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "public"."consulta" ADD CONSTRAINT "consulta_medico_responsavel_id_fkey" FOREIGN KEY ("medico_responsavel_id") REFERENCES "public"."usuario"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "public"."exame" ADD CONSTRAINT "exame_paciente_id_fkey" FOREIGN KEY ("paciente_id") REFERENCES "public"."paciente"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "public"."token" ADD CONSTRAINT "token_usuarioId_fkey" FOREIGN KEY ("usuarioId") REFERENCES "public"."usuario"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

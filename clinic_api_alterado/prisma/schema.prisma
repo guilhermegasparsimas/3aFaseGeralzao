@@ -62,34 +62,28 @@ model Paciente {
   @@map("paciente")
 }
 
-enum TipoExame {
-  SANGUE
-  URINA
-  RAIOX
-  ULTRASSOM
-  RESSONANCIA
-}
 
 model Exame {
-  id           Int       @id @default(autoincrement())
-  tipo_exame   TipoExame
+  id           Int      @id @default(autoincrement())
+  tipo_exame   String
   resultado    String
   data_exame   DateTime
   link_arquivo String
   observacoes  String
   paciente_id  Int
-  paciente     Paciente  @relation(fields: [paciente_id], references: [id])
+  paciente     Paciente @relation(fields: [paciente_id], references: [id])
 
   @@map("exame")
 }
 
 model Token {
   id        Int      @id @default(autoincrement())
-  token     String   @unique
-  userId    Int
-  expireAst DateTime
-  createAt  DateTime @default(now())
-  usuario   Usuario  @relation(fields: [userId], references: [id])
+  token     String   @db.VarChar(255)
+  type      String
+  usuarioId Int
+  revoked   Boolean  @default(value: false)
+  expiresAt DateTime
+  usuario   Usuario  @relation(fields: [usuarioId], references: [id])
 
   @@map("token")
 }
