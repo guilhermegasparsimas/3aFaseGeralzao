@@ -1,0 +1,25 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "João Alberto",
+            "idade": 23,
+            "email": "joaoAlberto@email.com",
+            "senha": "joaoAlberto123"
+        },
+        {
+            "id": 2,
+            "nome": "Amanda Souza",
+            "idade": 26,
+            "email": "amandaSouza@email.com",
+            "senha": "amandaSouza123"
+        },
+        {
+            "id": 3,
+            "nome": "Adalberto Guimarães",
+            "idade": 32,
+            "email": "adalbertoGuimaraes@email.com",
+            "senha": "adalbertoGuimaraes123"
+        }
+    ]
+}

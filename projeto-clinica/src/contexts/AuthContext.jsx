@@ -1,40 +1,34 @@
-import {createContext, useContext, useState, useEffect} from 'react';
 
-const AuthContext = createContext();
+import { createContext, useContext, useState, useEffect } from 'react';
 
-    export const AuthProvider = ({children}) => {
+const AuthContext = createContext()
 
-    const [ user, setUser ] = useState("")
+export const AuthProvider = ({ children }) => {
+    const [user, setUser] = useState("")
+
     // se ja tiver email no localStorage, mantém login
 
-    useEffect ( () => {
+    useEffect(() => {
         const savedEmail = localStorage.getItem("email")
-        if(savedEmail){
-            setUser({email: savedEmail})
+        if (savedEmail) {
+            setUser({ email: savedEmail })
         }
-    }, [] )
+    }, [])
 
     const login = (email) => {
         localStorage.setItem("email", email)
-        setUser({email})
+        setUser({ email })
     }
 
     const logout = () => {
         localStorage.removeItem("email")
         setUser("")
-        toast.success("Logout realizado com sucesso!", {
-            autoClose: 3000,
-            hideProgressBar: true,
-            pauseOnHover: false
-        })
     }
 
-    const funcaoX = () => {
-        
-    }
+
 
     return (
-        <AuthContext.Provider value={{user, login, logout}}>
+        <AuthContext.Provider value={{ user, login, logout }}>
             {children}
         </AuthContext.Provider>
     )
