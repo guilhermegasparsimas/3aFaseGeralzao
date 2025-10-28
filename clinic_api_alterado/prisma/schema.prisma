@@ -16,6 +16,7 @@ model Usuario {
   cargo      String
   Prontuario Prontuario[]
   Token      Token[]
+  Consulta   Consulta[]
 
   @@map("usuario")
 }
@@ -40,11 +41,10 @@ model Consulta {
   medico_responsavel_id Int
   paciente_id           Int
   paciente              Paciente @relation(fields: [paciente_id], references: [id])
+  usuario               Usuario  @relation(fields: [medico_responsavel_id], references: [id])
 
   @@map("consulta")
 }
-
-
 
 model Paciente {
   id              Int          @id @default(autoincrement())
@@ -63,7 +63,6 @@ model Paciente {
 }
 
 enum TipoExame {
-  
   SANGUE
   URINA
   RAIOX
@@ -72,14 +71,14 @@ enum TipoExame {
 }
 
 model Exame {
-  id           Int      @id @default(autoincrement())
+  id           Int       @id @default(autoincrement())
   tipo_exame   TipoExame
   resultado    String
   data_exame   DateTime
   link_arquivo String
   observacoes  String
   paciente_id  Int
-  paciente     Paciente @relation(fields: [paciente_id], references: [id])
+  paciente     Paciente  @relation(fields: [paciente_id], references: [id])
 
   @@map("exame")
 }

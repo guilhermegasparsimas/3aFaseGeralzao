@@ -12,3 +12,4 @@ test("Create a user with prisma", async () => {
     });
     expect(usuarios).toMatchObject(usuarios);
 });
+
