@@ -10,7 +10,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-import DashboardLayout from './layouts/DashboardLayout';
+import DashboardLayout from './layouts/DashboardLayout/DashboardLayout';
 import Dashboard from './pages/Dashboard/Dashboard';
 
 const router = createBrowserRouter([
