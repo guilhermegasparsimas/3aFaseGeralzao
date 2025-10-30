@@ -4,15 +4,19 @@ import { toast } from 'react-toastify'
 
 const RegisterUser = () => {
   //campos do formulário
+  const [nome, setNome] = useState('')
   const [email, setEmail] = useState('')
   const [senha, setPassword] = useState('')
+  const [cargo, setCargo] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   // verificador de correspondência de senha
   const [isPasswordMatch, setIsPasswordMatch] = useState(true)
   const [isSaving, setIsSaving] = useState(false)
   //funções de alteração de estado
+  const handleNameChange = (e) => setNome(e.target.value)
   const handleEmailChange = (e) => setEmail(e.target.value)
   const handlePasswordChange = (e) => setPassword(e.target.value)
+  const handleCargoChange = (e) => setCargo(e.target.value)
   const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value)
 
   //validação dos campos de senha
@@ -21,8 +25,10 @@ const RegisterUser = () => {
   //função para limpar o formulário
 
   const resetForm = () => {
+    setNome('')
     setEmail('')
     setPassword('')
+    setCargo('')
     setConfirmPassword('')
     setIsPasswordMatch(true)
   }
@@ -38,7 +44,7 @@ const RegisterUser = () => {
     setIsSaving(true)
 
     try {
-      await axios.post('http://localhost:3000/auth/register', { email, senha })
+      await axios.post('http://localhost:3000/auth/register', { nome, email, senha, cargo })
       setIsSaving(false)
       resetForm()
       toast.success("Usuário criado com sucesso!", {
@@ -63,6 +69,18 @@ const RegisterUser = () => {
       <h2 className='text-2xl font-bold mb-6 text-center'>Criar Usuário</h2>
       <form onSubmit={handleSubmit} className='space-y-4'>
         <div>
+          <label htmlFor='emailRegisterUser' className='block text-sm font-medium mb-1'>Nome Usuário</label>
+          <input
+            type='name'
+            id='nameRegisterUser'
+            value={nome}
+            onChange={handleNameChange}
+            required
+            className='w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
+          />
+        </div>
+
+        <div>
           <label htmlFor='emailRegisterUser' className='block text-sm font-medium mb-1'>Email</label>
           <input
             type='email'
@@ -86,7 +104,7 @@ const RegisterUser = () => {
             className='w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
           />
         </div>
-
+        
         <div>
           <label htmlFor='confirmPassword' className='block text-sm font-medium mb-1'>Confirmar senha</label>
           <input
@@ -102,6 +120,20 @@ const RegisterUser = () => {
             <p className='text-red-500 text-sm mt-1'>As senhas não correspondem</p>
           )}
         </div>
+
+        <div>
+          <label htmlFor='cargoRegisterUser' className='block text-sm font-medium mb-1'>Cargo</label>
+          <input
+            type='text'
+            id='cargoRegisterUser'
+            value={cargo}
+            onChange={handleCargoChange}
+            required
+            minLength={8}
+            className='w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
+          />
+        </div>
+
 
         <div className='flex justify-center'>
           <button
