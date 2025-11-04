@@ -7,6 +7,7 @@ export function signAccessToken(payload) {
         payload, env.accessSecret,
         {
             expiresIn: Number(env.accessTtl)
+
         });
 }
 export function signRefreshToken(payload) {

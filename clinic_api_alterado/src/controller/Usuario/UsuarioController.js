@@ -1,119 +1,123 @@
+// Path: src/controller/Usuario/UsuarioController.js
+
 import { prismaClient } from "../../../prisma/prisma.js";
 
-class UsuarioController {
-    constructor() { }
-    async getTodosOsUsuarios(_, res) {
-        try {
-            const usuarios = await prismaClient.usuario.findMany();
-            return res.json(usuarios)
-        }
-        catch (e) {
-            console.log(e)
-        }
-    }
-
-    async getUsuarioPorId(req, res) {
-        try {
-            const { params } = req
-            const usuario = await prismaClient.usuario.findUnique({
-                where: {
-                    id: Number(params.id)
-                }
-            })
-            if (!usuario) return res.status(404).send("Usuário não existe!")
-            return res.json(usuario)
-        }
-        catch (e) {
-            console.log(e)
-        }
-    }
-
-    async getUsuarioPorEmail(req, res) {
-        try {
-            const usuario = await prismaClient.usuario.findUnique({
-                where: {
-                    id: String(req.params.email)
-                }
-            })
-            if (!usuario) return res.status(404).send("Usuário não existe!")
-            return res.json(usuario)
-        }
-        catch (e) {
-            console.log(e)
-        }
-    }
-
-    async criarUsuarios(req, res) {
-        try {
-            const { body } = req
-            const usuario = await prismaClient.usuario.create({
-                data: {
-                    nome: body.nome,
-                    cargo: body.cargo,
-                    email: body.email,
-                    senha: body.senha
-                },
-            })
-            return res.status(201).json(usuario)
-        } catch (error) {
-            console.error(error)
-            if (error.code === "P2002") {
-                res.status(404).send("Falha ao cadastrar usuário: Email já cadastrado!")
-            }
-        }
-    }
-    async atualizarUsuarios(req, res) {
-        try {
-            const { body, params } = req
-            if (body.nome || body.cargo || body.email || body.senha) {
-                await prismaClient.usuario.update({
-                    where: { id: Number(params.id) },
-                    data: {
-                        ...body
-                    },
-                })
-
-                const usuarioAtualizado = await prismaClient.usuario.findUnique({
-                    where: {
-                        id: Number(params.id)
-                    }
-                })
-
-                res.status(201).json({
-                    message: "Usuário atualizado!",
-                    data: usuarioAtualizado
-                })
-            } 
-            else {
-                res.status(404).send("Atributos enviados não condizem com o schema")
-            }
-        } catch (error) {
-            if (error.code == "P2025") {
-                res.status(404).send("Usuário não existe no banco")
-            }
-            if (error.code === "P2002") {
-                res.status(404).send("Falha ao cadastrar usuário: Email já cadastrado!")
-            }
-        }
-    }
-    async deletarUsuarios(req, res) {
-        const { params } = req
-        try {
-            const usuarioDeletado = await prismaClient.usuario.delete({
-                where: {
-                    id: Number(params.id),
-                },
-            })
-            res.status(200).json({
-                message: "Usuário deletado!",
-                data: usuarioDeletado
-            })
-        } catch (error) {
-            if (error.code == "P2025") {
-                res.status(404).send("Usuário não existe no banco")
-            }
-        }
-    }
+// GET /usuarios
+export async function getTodosOsUsuarios(req, res) {
+  try {
+    const usuarios = await prismaClient.usuario.findMany();
+    return res.json(usuarios);
+  } catch (e) {
+    console.error("Erro em getTodosOsUsuarios:", e);
+    return res.status(500).json({ error: "Erro ao buscar usuários" });
+  }
 }
 
-export const usuarioController = new UsuarioController();
+// GET /usuarios/:id
+export async function getUsuarioPorId(req, res) {
+  try {
+    const usuario = await prismaClient.usuario.findUnique({
+      where: { id: Number(req.params.id) },
+    });
+    if (!usuario) return res.status(404).send("Usuário não existe!");
+    return res.json(usuario);
+  } catch (e) {
+    console.error(" Erro em getUsuarioPorId:", e);
+    return res.status(500).json({ error: "Erro ao buscar usuário" });
+  }
+}
+
+// GET /usuarios/:email
+export async function getUsuarioPorEmail(req, res) {
+  try {
+    const email = String(req.query.email);
+    const usuario = await prismaClient.usuario.findUnique({
+      where: { email },
+    });
+    if (!usuario) return res.status(404).send("Usuário não existe!");
+    return res.json(usuario);
+  } catch (e) {
+    console.error(" Erro em getUsuarioPorEmail:", e);
+    return res.status(500).json({ error: "Erro ao buscar usuário" });
+  }
+}
+
+// POST /usuarios
+export async function criarUsuario(req, res) {
+  try {
+    console.log("📥 Requisição recebida em /usuarios:", req.body);
+
+    const usuario = await prismaClient.usuario.create({
+      data: {
+        nome: req.body.nome,
+        cargo: req.body.cargo,
+        email: req.body.email,
+        senha: req.body.senha,
+      },
+    });
+
+    console.log(" Usuário criado:", usuario);
+    return res.status(201).json(usuario);
+  } catch (error) {
+    console.error("Erro ao criar usuário:", error);
+
+    if (error.code === "P2002") {
+      return res
+        .status(400)
+        .send("Falha ao cadastrar usuário: Email já cadastrado!");
+    }
+
+    return res.status(500).send("Erro inesperado no servidor");
+  }
+}
+
+// PUT /usuarios/:id
+export async function atualizarUsuario(req, res) {
+  try {
+    const { body, params } = req;
+
+    const usuarioAtualizado = await prismaClient.usuario.update({
+      where: { id: Number(params.id) },
+      data: { ...body },
+    });
+
+    return res.status(200).json({
+      message: "Usuário atualizado!",
+      data: usuarioAtualizado,
+    });
+  } catch (error) {
+    console.error(" Erro ao atualizar usuário:", error);
+
+    if (error.code == "P2025") {
+      return res.status(404).send("Usuário não existe no banco");
+    }
+    if (error.code === "P2002") {
+      return res
+        .status(400)
+        .send("Falha ao cadastrar usuário: Email já cadastrado!");
+    }
+
+    return res.status(500).send("Erro inesperado no servidor");
+  }
+}
+
+// DELETE /usuarios/:id
+export async function deletarUsuario(req, res) {
+  try {
+    const usuarioDeletado = await prismaClient.usuario.delete({
+      where: { id: Number(req.params.id) },
+    });
+    return res.status(200).json({
+      message: "Usuário deletado!",
+      data: usuarioDeletado,
+    });
+  } catch (error) {
+    console.error(" Erro ao deletar usuário:", error);
+
+    if (error.code == "P2025") {
+      return res.status(404).send("Usuário não existe no banco");
+    }
+
+    return res.status(500).send("Erro inesperado no servidor");
+  }
+}

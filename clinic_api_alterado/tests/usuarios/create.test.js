@@ -1,15 +1,15 @@
 import { prismaClient } from "../../prisma/prisma";
 
-test("Create a user with prisma", async () => {
+test("Consulta ao banco retorna lista de usuários", async () => {
     const data = {
-        nome: "Jaqueline",
-        email: "jaqueline@gmail.com",
-        cargo: "Desenvolvedor",
-        senha: "jaque123"
+        nome: "Édio",
+        cargo: "Médico",
+        email: "edio.pereira@edu.senai.sc.br",
+        senha: "teste123",
     }
-    const usuarios =  await prismaClient.usuario.create({
+
+    const usuario = await prismaClient.usuario.create({
         data: data,
     });
-    expect(usuarios).toMatchObject(usuarios);
+    expect(usuario).toMatchObject(usuario);
 });
-

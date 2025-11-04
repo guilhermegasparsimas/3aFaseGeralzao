@@ -1,18 +1,10 @@
-import { Router } from 'express';
-import { pacienteController } from '../controller/Paciente/PacienteController.js';
+import { Router } from "express";
+import { pacienteController } from "../controller/Paciente/PacienteController.js"
+
 export const pacientesRouter = Router()
 
-// ROTA PARA LISTAR TODOS OS PACIENTES
-pacientesRouter.get('/pacientes', pacienteController.getTodosPacientes)
-
-// ROTA PARA BUSCAR PACIENTES PELO ID
-pacientesRouter.get("/pacientes/:id", pacienteController.getPacientesPorId)
-
-// ROTA PARA CADASTRAR NOVOS PACIENTES
-pacientesRouter.post("/pacientes", pacienteController.criarPacientes)
-
-// ROTA PARA ATUALIZAR PACIENTES PELO ID
-pacientesRouter.put("/pacientes/:id", pacienteController.atualizarPacientes)
-
-// ROTA PARA DELETAR PACIENTES PELO ID
-pacientesRouter.delete("/pacientes/:id", pacienteController.deletarPacientes)
+pacientesRouter.get("/pacientes", pacienteController.pegarTodosPacientes)
+pacientesRouter.get("/pacientes/:id", pacienteController.pegarPacientePorId)
+pacientesRouter.post("/pacientes", pacienteController.criarPaciente)
+pacientesRouter.put("/pacientes/:id", pacienteController.atualizarPaciente)
+pacientesRouter.delete("/pacientes/:id", pacienteController.deletePaciente)
