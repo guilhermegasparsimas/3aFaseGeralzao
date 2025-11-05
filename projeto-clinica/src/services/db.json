@@ -2,115 +2,110 @@
   "users": [
     {
       "id": "1",
-      "name": "João",
       "email": "joao@email.com",
-      "password": "joao123"
+      "password": "123456789"
     },
     {
       "id": "2",
-      "name": "Maycon",
-      "email": "maycon@email.com",
-      "password": "maycon123"
+      "email": "maria@email.com",
+      "password": "123456789"
     },
     {
-      "id": "3",
-      "name": "guilherme",
-      "email": "guilherme@email.com",
-      "password": "guilherme123"
+      "id": "cb2e",
+      "email": "luciano@email.com",
+      "password": "123456789"
     },
     {
-      "id": "aeb2",
-      "email": "Maycon@gibson.com",
-      "password": "Maycon123"
+      "id": "058a",
+      "email": "luciano3@email.com",
+      "password": "123456789"
     },
     {
-      "id": "8832",
-      "email": "Marcelo@simas.com",
-      "password": "asas1234"
-    },
-    {
-      "id": "a29f",
-      "email": "Luana@email.com",
-      "password": "marcelo123"
-    },
-    {
-      "id": "3b8d",
-      "email": "seila@email.com",
-      "password": "seila1234"
-    },
-    {
-      "id": "0e42",
-      "email": "lele@lele.com",
-      "password": "lele12345"
-    },
-    {
-      "id": "3f41",
-      "email": "lala@lala.com",
-      "password": "lalalala"
+      "id": "ef3c",
+      "email": "luciano20@gmail.com",
+      "password": "123456789"
     }
   ],
-  "patients": [
+  "patients":[
     {
-      "id": "1",
-      "fullName": "Nicolas Tesla",
-      "gender": "Masculino",
-      "birthdate": "11/08/2000",
-      "cpf": "958.555.555-55",
-      "rg": "7592516",
-      "maritalStatus": "Solteiro",
-      "phone": "48991923003",
-      "email": "Nicolas@gmail.com",
-      "birthplace": "Florianópolis",
-      "emergencyContact": "48-966557643",
-      "allergies": "alergia A, alergia B",
-      "specialCare": "evitar açucar",
-      "healthInsurance": "Unimed",
-      "insuranceNumber": "1254321",
-      "insuranceValidity": "16/10/2027",
-      "addres": {
-        "cep": "88055-55",
-        "city": "Florianópolis",
-        "state": "SC",
-        "street": "rua das Goiabas",
-        "number": "32",
-        "complement": "Casa",
-        "neighborhood": "centro",
-        "reference": "Próximo a UPA"
+      "id":"1",
+      "fullName":"João da Silva",
+      "gender":"Masculino",
+      "birthdate":"11/08/2000",
+      "cpf":"958.555.555-55",
+      "rg":"958.555.555-55",
+      "maritalStatus":"Solteiro",
+      "phone":"48-98888-5555",
+      "email":"joao@email.com",
+      "birthplace":"Florianópolis",
+      "emergencyContact":"48-96666-5555",
+      "allergies":"alergia A, alergia B",
+      "specialCare":"evitar açúcar",
+      "healthInsurance":"Unimed",
+      "insuranceNumber":"1251112",
+      "insuranceValidity":"15/10/2027",
+      "address":{
+        "cep":"88055-565",
+        "city":"Florianópolis",
+        "state":"SC",
+        "street":"Rua das goiabas",
+        "number":"32",
+        "complement":"casa",
+        "neighborhood":"centro",
+        "reference":"próximo da UPA"
+      }
+    },
+    {
+      "id":"2",
+      "fullName":"Maria",
+      "gender":"Feminino",
+      "birthdate":"11/08/2000",
+      "cpf":"958.555.555-55",
+      "rg":"958.555.555-55",
+      "maritalStatus":"Solteiro",
+      "phone":"48-98888-5555",
+      "email":"joao@email.com",
+      "birthplace":"Florianópolis",
+      "emergencyContact":"48-96666-5555",
+      "allergies":"alergia A, alergia B",
+      "specialCare":"evitar açúcar",
+      "healthInsurance":"Unimed",
+      "insuranceNumber":"1251112",
+      "insuranceValidity":"15/10/2027",
+      "address":{
+        "cep":"88055-565",
+        "city":"Florianópolis",
+        "state":"SC",
+        "street":"Rua das goiabas",
+        "number":"32",
+        "complement":"casa",
+        "neighborhood":"centro",
+        "reference":"próximo da UPA"
       }
     }
   ],
-  "consults": [
+  "consults":[
     {
-      "patientId": "1",
-      "reason": "gripe",
-      "date": "17-07-2025",
-      "time": "15:30:00",
-      "description": "dores de cabeça e corisa",
-      "medication": "benegripe",
-      "dosagePrecaution": "2 vezes ao dia",
-      "id": "1"
+      "patientId":"1",
+      "reason":"gripe",
+      "date":"27-07-2025",
+      "time":"15:30",
+      "description":"dores de cabeça e coriza",
+      "medication":"benegrip",
+      "dosagePrecaution":"2 vezes ao dia",
+      "id":"1"
     }
   ],
-  "exams": [
+  "exams":[
     {
-      "name": "cardiológico",
-      "date": "19-08-2025",
-      "time": "17:45:00",
-      "type": "cateterismo",
-      "laboratory": "Santa Luzia",
-      "documentURL": "site.com.br/exame.pdf",
-      "result": "dados do exame",
-      "id": "1"
-    },
-    {
-      "name": "Psicológico",
-      "date": "29-09-2025",
-      "time": "17:15:00",
-      "type": "cateterismo",
-      "laboratory": "Santa Luzia",
-      "documentURL": "site.com.br/exame.pdf",
-      "result": "dados do exame",
-      "id": "2"
+      "name":"cardiológico",
+      "date":"12-07-2023",
+      "time":"15:30",
+      "type":"cateterismo",
+      "laboratory":"santa luzia",
+      "documentUrl":"site.com.br/exame.pdf",
+      "results":"dados do exame",
+      "id":"1"
     }
   ]
 }

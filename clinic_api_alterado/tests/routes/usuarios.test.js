@@ -69,15 +69,50 @@ describe("Testes de Integração para /usuarios", () => {
   });
 
   test("PUT /usuarios/:id", async () => {
+
+    const usuarioExistente = await prismaClient.usuario.findUnique({
+      where: { email: "integrado@teste.com" },
+    });
+
+    // Garante que o usuário existe para o teste
+    expect(usuarioExistente).toBeDefined();
+    const userId = usuarioExistente.id;
+
+    // 2. Novos dados a serem atualizados
+    const updatedData = {
+      nome: "Novo Nome Atualizado",
+      email: "novo.email.atualizado@teste.com",
+      cargo: "enfermeiro", // Mudança de cargo
+      // Não é necessário enviar a senha se não for alterá-la
+    };
+
+    // 3. Executar a requisição PUT
     const response = await request(app)
-    .put("/usuarios/:id")
-    .set("Authorization", `Bearer ${token}`);
+      .put(`/usuarios/${userId}`) // Utiliza o ID real na URL
+      .set("Authorization", `Bearer ${token}`) // Envia o Bearer Token
+      .send(updatedData) // Envia o corpo da requisição com os dados atualizados
+      .expect("Content-Type", /json/);
 
+    // 4. Validar o Status Code
+    expect(response.status).toBe(200);
 
+    // 5. Verificar o corpo da resposta (opcional: a API pode retornar o usuário atualizado)
+    expect(response.body.nome).toBe(updatedData.nome);
+    expect(response.body.email).toBe(updatedData.email);
+    expect(response.body.cargo).toBe(updatedData.cargo);
+    // Verifica se o campo de senha não foi retornado (segurança)
+    expect(response.body.senha).toBeUndefined();
 
+    // 6. Teste de persistência: Busca o recurso diretamente no banco de dados para confirmar
+    const usuarioAtualizadoDB = await prismaClient.usuario.findUnique({
+      where: { id: userId },
+    });
+
+    expect(usuarioAtualizadoDB.nome).toBe(updatedData.nome);
+    expect(usuarioAtualizadoDB.email).toBe(updatedData.email);
+    expect(usuarioAtualizadoDB.cargo).toBe(updatedData.cargo);
+    expect(usuarioAtualizadoDB.senha).toBe(usuarioExistente.senha); 
+    // A senha deve ser a mesma (hash)
   });
-
-  
-
 
 });

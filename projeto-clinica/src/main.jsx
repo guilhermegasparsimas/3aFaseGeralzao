@@ -1,18 +1,24 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import './index.css';
-import { createBrowserRouter } from 'react-router-dom';
-import { RouterProvider } from 'react-router-dom';
-import Login from './pages/Login/Login';
-import { AuthProvider } from './contexts/AuthContext';
-// import App from './App.jsx' @@Retiramos esta importação pois não estamos mais utilizando o css desta página, estamos usando tailwindcss, e no arquivo index.css importamos o @ import "tailwindcss" para utilizar de modo GLOBAL neste projeto
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
 
-import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-import DashboardLayout from './layouts/DashboardLayout';
-import Dashboard from './pages/Dashboard/Dashboard';
-import MedicalRecordList from './components/MedicalRecordList/MedicalRecordList';
+// import react router
+
+import { createBrowserRouter } from 'react-router'
+import { RouterProvider } from 'react-router/dom'
+
+//import toastify
+import { ToastContainer } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
+
+
+import './index.css'
+import Login from './pages/Login/Login'
+import { AuthProvider } from './contexts/AuthContext'
+import Dashboard from './pages/Dashboard/Dashboard'
+import PrivateRoute from './components/PrivateRoute/PrivateRoute'
+import DashboardLayout from './layouts/DashboardLayout'
+import MedicalRecordList from './components/MedicalRecordList/MedicalRecordList'
+// import App from './App.jsx'
 
 const router = createBrowserRouter([
   {
@@ -20,29 +26,25 @@ const router = createBrowserRouter([
     element: <Login />
   },
   {
-    
+
     element: (
       <PrivateRoute>
-          <DashboardLayout />
+        <DashboardLayout />
       </PrivateRoute>
     ),
     children: [
-      {path: 'dashboard', element: <Dashboard /> },
-      {path: 'prontuarios', element: <MedicalRecordList /> },
+      { path: 'dashboard', element: <Dashboard /> },
+      { path: 'prontuarios', element: <MedicalRecordList/> },
     ]
   }
 ])
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-
     <AuthProvider>
-
       <ToastContainer />
-      <RouterProvider router={router}/>
-
+      <RouterProvider router={router} />
     </AuthProvider>
-
-
+    {/* <App /> */}
   </StrictMode>,
 )
