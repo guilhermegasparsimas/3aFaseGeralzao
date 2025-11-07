@@ -6,8 +6,13 @@ const ExamsCounter = () => {
     const [examsCount, setExamsCount] = useState(0)
 
     const fetchExams = async () => {
+        const token = localStorage.getItem("token") 
         try {
-            const response = await axios.get("http://localhost:3000/exams");
+            const response = await axios.get("http://localhost:3000/exames", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            });
             setExamsCount(response.data.length)
         } catch (error) {
             console.error("Erro ao obter os dados dos pacientes", error)

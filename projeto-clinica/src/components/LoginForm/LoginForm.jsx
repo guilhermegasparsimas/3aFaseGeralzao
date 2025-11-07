@@ -29,12 +29,16 @@ const LoginForm = () => {
     const handleLogin = async (e) => {
         e.preventDefault()
 
-        try {
-            const response = await axios.get('http://localhost:3000/users', {
-                params: { email, password }
-            })
+        const data = {
+            email: email,
+            senha: password
+        }
 
-            // console.log(response)
+        try {
+            const response = await axios.post('http://localhost:3000/auth/login', data)
+
+            console.log("tentando pegar o token", response.data.accessToken)
+            const resToken = response.data.accessToken
 
             if (response.data.length === 0) {
                 console.log("usuário não encontrado")
@@ -45,7 +49,7 @@ const LoginForm = () => {
                 return
             }
 
-            login(email)
+            login(email, resToken)
             toast.success("Login realizado com sucesso!", {
                 autoClose: 3000,
                 hideProgressBar: true

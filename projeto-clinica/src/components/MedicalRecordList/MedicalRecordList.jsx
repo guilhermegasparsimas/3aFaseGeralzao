@@ -7,8 +7,13 @@ const MedicalRecordList = ()=>{
     const [searchTerm, setSearchTerm] = useState('')
 
     const fetchPatients = async () => {
+        const token = localStorage.getItem("token")
         try{
-            const response = await axios.get("http://localhost:3000/patients");
+            const response = await axios.get("http://localhost:3000/pacientes", {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             setPatients(response.data)
         } catch (error){
             console.error("erro ao obter dados do paciente",error)

@@ -6,13 +6,18 @@ const ConsultsCounter = () => {
     const [consultCount, setConsultCount] = useState(0)
 
     const fetchConsults = async () => {
+        const localToken = localStorage.getItem("token")
         try {
-            const response = await axios.get("http://localhost:3000/consults");
+            const response = await axios.get("http://localhost:3000/consultas", {
+                headers: {
+                    Authorization: `Bearer ${localToken}`
+                }
+            });
             setConsultCount(response.data.length)
         } catch (error) {
             console.error("Erro ao obter os dados dos pacientes", error)
         }
-    }
+    };
 
     useEffect(() => {
         fetchConsults()
