@@ -122,6 +122,16 @@
       "medication": "benegrip",
       "dosagePrecaution": "2 vezes ao dia",
       "id": "1"
+    },
+    {
+      "patientId": "1",
+      "reason": "dor de cabeça",
+      "date": "27-07-2025",
+      "time": "15:30",
+      "description": "dores de cabeça e coriza",
+      "medication": "benegrip",
+      "dosagePrecaution": "2 vezes ao dia",
+      "id": "1"
     }
   ],
   "exams": [
