@@ -33,17 +33,17 @@ const PatientsList = () => {
   const calculateAge = (birthdate) => {
     if (!birthdate) return "-"; // verifica se o campo birthdate foi preenchido, caso não retorna um "-"
     const today = new Date(); // armazena a data atual em today
-    const birthdateDate = new Date(birthdate); // é a data de nasciemnto fornecida pelo usuário
+    const birthdateDate = new Date(birthdate); // converte a string para um objeto date
     let age = today.getFullYear() - birthdateDate.getFullYear(); // calcula a data de hoje menos a data de nasciemnto do usuário
     const monthDiff = today.getMonth() - birthdateDate.getMonth(); // calcula a diferença entre o mes atual e o mes de nascimento
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthdateDate.getDate())) {
-      age--;
-    } // este if verifica se o aniversário ja ocorreu neste ano
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthdateDate.getDate())) { // verifica se os meses são iguais para saber se o aniversário ja ocorreu neste ano
+      age--; // caso não tenha acontecido o aniversário ainda, subtrai 1 da idade 
+    } 
     return age;
   };
 
   const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value); // recebe o que usuário digita e atualiza o estado com esse novo valor
+    setSearchTerm(event.target.value); // atualiza o estado com um novo valor fornecido pelo usuário
   };
 
   const filteredPatients = patients.filter((patient) => // cria uma nova lista contendo apenas os pacientes que correspondem ao texto digitado no campo de busca
