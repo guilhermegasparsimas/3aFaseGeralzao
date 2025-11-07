@@ -26,86 +26,114 @@
       "password": "123456789"
     }
   ],
-  "patients":[
+  "patients": [
     {
-      "id":"1",
-      "fullName":"João da Silva",
-      "gender":"Masculino",
-      "birthdate":"11/08/2000",
-      "cpf":"958.555.555-55",
-      "rg":"958.555.555-55",
-      "maritalStatus":"Solteiro",
-      "phone":"48-98888-5555",
-      "email":"joao@email.com",
-      "birthplace":"Florianópolis",
-      "emergencyContact":"48-96666-5555",
-      "allergies":"alergia A, alergia B",
-      "specialCare":"evitar açúcar",
-      "healthInsurance":"Unimed",
-      "insuranceNumber":"1251112",
-      "insuranceValidity":"15/10/2027",
-      "address":{
-        "cep":"88055-565",
-        "city":"Florianópolis",
-        "state":"SC",
-        "street":"Rua das goiabas",
-        "number":"32",
-        "complement":"casa",
-        "neighborhood":"centro",
-        "reference":"próximo da UPA"
+      "id": "1",
+      "fullName": "João da Silva",
+      "gender": "Masculino",
+      "birthdate": "11/08/2000",
+      "cpf": "958.555.555-55",
+      "rg": "958.555.555-55",
+      "maritalStatus": "Solteiro",
+      "phone": "48-98888-5555",
+      "email": "joao@email.com",
+      "birthplace": "Florianópolis",
+      "emergencyContact": "48-96666-5555",
+      "allergies": "alergia A, alergia B",
+      "specialCare": "evitar açúcar",
+      "healthInsurance": "Unimed",
+      "insuranceNumber": "1251112",
+      "insuranceValidity": "15/10/2027",
+      "address": {
+        "cep": "88055-565",
+        "city": "Florianópolis",
+        "state": "SC",
+        "street": "Rua das goiabas",
+        "number": "32",
+        "complement": "casa",
+        "neighborhood": "centro",
+        "reference": "próximo da UPA"
       }
     },
     {
-      "id":"2",
-      "fullName":"Maria",
-      "gender":"Feminino",
-      "birthdate":"11/08/2000",
-      "cpf":"958.555.555-55",
-      "rg":"958.555.555-55",
-      "maritalStatus":"Solteiro",
-      "phone":"48-98888-5555",
-      "email":"joao@email.com",
-      "birthplace":"Florianópolis",
-      "emergencyContact":"48-96666-5555",
-      "allergies":"alergia A, alergia B",
-      "specialCare":"evitar açúcar",
-      "healthInsurance":"Unimed",
-      "insuranceNumber":"1251112",
-      "insuranceValidity":"15/10/2027",
-      "address":{
-        "cep":"88055-565",
-        "city":"Florianópolis",
-        "state":"SC",
-        "street":"Rua das goiabas",
-        "number":"32",
-        "complement":"casa",
-        "neighborhood":"centro",
-        "reference":"próximo da UPA"
+      "id": "2",
+      "fullName": "Maria",
+      "gender": "Feminino",
+      "birthdate": "11/08/2000",
+      "cpf": "958.555.555-55",
+      "rg": "958.555.555-55",
+      "maritalStatus": "Solteiro",
+      "phone": "48-98888-5555",
+      "email": "joao@email.com",
+      "birthplace": "Florianópolis",
+      "emergencyContact": "48-96666-5555",
+      "allergies": "alergia A, alergia B",
+      "specialCare": "evitar açúcar",
+      "healthInsurance": "Unimed",
+      "insuranceNumber": "1251112",
+      "insuranceValidity": "15/10/2027",
+      "address": {
+        "cep": "88055-565",
+        "city": "Florianópolis",
+        "state": "SC",
+        "street": "Rua das goiabas",
+        "number": "32",
+        "complement": "casa",
+        "neighborhood": "centro",
+        "reference": "próximo da UPA"
+      }
+    },
+    {
+      "id": "4cea",
+      "fullName": "Dona Maria Lúcia",
+      "gender": "feminino",
+      "birthdate": "2001-02-20",
+      "cpf": "999.999.999-12",
+      "rg": "7516654",
+      "maritalStatus": "solteiro(a)",
+      "phone": "(48) 99194-2002",
+      "email": "donamaria@email.com",
+      "birthplace": "Brasil",
+      "emergencyContact": "(48) 99130-1821",
+      "allergies": "alergia a dopamina",
+      "specialCare": "Cuidado ao ver que ela está com fome",
+      "healthInsurance": "unimed",
+      "insuranceNumber": "123456789",
+      "insuranceValidity": "2027-05-20",
+      "address": {
+        "cep": "88162-246",
+        "city": "",
+        "state": "",
+        "street": "Rua Dona Maria Lúcia",
+        "number": "190",
+        "complement": "",
+        "neighborhood": "",
+        "reference": ""
       }
     }
   ],
-  "consults":[
+  "consults": [
     {
-      "patientId":"1",
-      "reason":"gripe",
-      "date":"27-07-2025",
-      "time":"15:30",
-      "description":"dores de cabeça e coriza",
-      "medication":"benegrip",
-      "dosagePrecaution":"2 vezes ao dia",
-      "id":"1"
+      "patientId": "1",
+      "reason": "gripe",
+      "date": "27-07-2025",
+      "time": "15:30",
+      "description": "dores de cabeça e coriza",
+      "medication": "benegrip",
+      "dosagePrecaution": "2 vezes ao dia",
+      "id": "1"
     }
   ],
-  "exams":[
+  "exams": [
     {
-      "name":"cardiológico",
-      "date":"12-07-2023",
-      "time":"15:30",
-      "type":"cateterismo",
-      "laboratory":"santa luzia",
-      "documentUrl":"site.com.br/exame.pdf",
-      "results":"dados do exame",
-      "id":"1"
+      "name": "cardiológico",
+      "date": "12-07-2023",
+      "time": "15:30",
+      "type": "cateterismo",
+      "laboratory": "santa luzia",
+      "documentUrl": "site.com.br/exame.pdf",
+      "results": "dados do exame",
+      "id": "1"
     }
   ]
 }
