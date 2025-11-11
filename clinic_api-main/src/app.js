@@ -21,7 +21,7 @@ app.get("/ping", (req, res) => {
   res.send("pong");
 });
 
-// Swagger UI
+// Swagger
 swaggerDocs(app);
 
 // Rotas públicas

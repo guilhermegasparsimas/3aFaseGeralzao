@@ -1,34 +1,12 @@
 // Path: src/config/swagger.js
 
-import swaggerJsDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
+import { createRequire } from "module";
 
-const options = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "API Clínica Médica",
-      version: "1.0.0",
-      description: "Documentação gerada automaticamente com Swagger UI",
-    },
-    servers: [{ url: "http://localhost:3000" }],
-    components: {
-      securitySchemes: {
-        bearerAuth: {
-          type: "http",
-          scheme: "bearer",
-          bearerFormat: "JWT",
-        },
-      },
-    },
-    security: [{ bearerAuth: [] }],
-  },
-  apis: ["./src/routes/*.js"], // <-- Caminho absoluto correto
-};
-
-const swaggerSpec = swaggerJsDoc(options);
+const require = createRequire(import.meta.url);
+const swaggerFile = require("../../swagger-output.json");
 
 export function swaggerDocs(app) {
-  app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
   console.log("📘 Swagger disponível em: http://localhost:3000/docs");
 }

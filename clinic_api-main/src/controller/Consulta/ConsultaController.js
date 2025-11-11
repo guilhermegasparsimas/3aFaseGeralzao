@@ -5,31 +5,22 @@ class ConsultaController {
     constructor() { }
 
     async pegarTodasConsultas(req, res) {
-
+        const { page, limit } = req.query
+        const pageNumber = Number(page)
+        const limitNumber= Number(limit)
         try {
-            const consultas = await prismaClient.consulta.findMany();
+            const consultas = await prismaClient.consulta.findMany(
+                {
+                    skip: (pageNumber - 1) * limitNumber,
+                    take: limitNumber,
+                }
+            );
             return res.json(consultas)
         }
         catch (e) {
             console.log(e)
         }
     }
-    //     const { page, limit } = req.query
-    //     const pageNumber = Number(page)
-    //     const limitNumber= Number(limit)
-    //     try {
-    //         const consultas = await prismaClient.consulta.findMany(
-    //             {
-    //                 skip: (pageNumber - 1) * limitNumber,
-    //                 take: limitNumber,
-    //             }
-    //         );
-    //         return res.json(consultas)
-    //     }
-    //     catch (e) {
-    //         console.log(e)
-    //     }
-    // }
 
     async pegarConsultaPorId(req, res) {
         try {

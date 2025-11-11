@@ -15,7 +15,7 @@ class AuthController {
         res
     ) {
         try {
-            const { nome, email, senha, cargo } = req.body;
+            const { email, senha, nome, cargo } = req.body;
             // Validação básica
             if (!email || !senha) {
                 return res.status(400).json({ error: "Email e senha são obrigatórios" });
