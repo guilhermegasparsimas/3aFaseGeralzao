@@ -21,7 +21,7 @@ describe("Testes de Integração para /usuarios", () => {
   beforeEach(async () => {
     await clearDatabase();
 
-    const hashedPassword = await bcrypt.hash("123", 10);
+    const hashedPassword = await bcrypt.hash("12345678", 10);
 
     const userCreated = await prismaClient.usuario.create({
       data: {
@@ -36,7 +36,7 @@ describe("Testes de Integração para /usuarios", () => {
 
     const userResponse = await request(app)
       .post("/auth/login")
-      .send({ email: "integrado@teste.com", senha: "123" })
+      .send({ email: "integrado@teste.com", senha: "12345678" })
       .expect(200);
 
     token = userResponse.body.accessToken;
@@ -61,7 +61,7 @@ describe("Testes de Integração para /usuarios", () => {
   });
 
   test("GET /usuarios - Deve retornar um array vazio se não houver usuários", async () => {
-    await clearDatabase();
+    // await clearDatabase();
 
     const response = await request(app)
       .get("/usuarios")
@@ -72,7 +72,7 @@ describe("Testes de Integração para /usuarios", () => {
   });
 
   test("POST /usuarios - Deve retornar 201 usuario Criado com sucesso" , async () => {
-    await clearDatabase();
+    // await clearDatabase();
 
     const novoUsuario = {
       nome: "Gustavo Almeida",
