@@ -35,8 +35,10 @@ const LoginForm = () => {
         }
 
         try {
-            const response = await axios.post('http://localhost:3000/auth/login', data)
-
+            // const response = await axios.post('http://localhost:3000/auth/login', data)
+              const response = await axios.get('http://localhost:3000/users', {
+        params: { email, password },
+      });
             console.log("tentando pegar o token", response.data.accessToken)
             const resToken = response.data.accessToken
 

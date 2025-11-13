@@ -24,6 +24,11 @@
       "id": "ef3c",
       "email": "luciano20@gmail.com",
       "password": "123456789"
+    },
+    {
+      "id": "148c",
+      "email": "marcelo10simas@email.com",
+      "password": "marcelo10simas"
     }
   ],
   "patients": [

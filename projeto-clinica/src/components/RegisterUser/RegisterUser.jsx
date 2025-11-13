@@ -50,7 +50,8 @@ const RegisterUser = () => {
         cargo,
         senha: password,
       };
-      await axios.post("http://localhost:3000/auth/register", data);
+      // await axios.post("http://localhost:3000/auth/register", data);
+       await axios.post('http://localhost:3000/users', { email, password });
       setIsSaving(false);
       resetForm();
       toast.success("Usuário criado com sucesso!", {

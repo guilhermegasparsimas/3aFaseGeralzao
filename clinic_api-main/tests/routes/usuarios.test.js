@@ -1,5 +1,3 @@
-// Path: tests/routes/usuarios.test.js
-
 import bcrypt from "bcrypt";
 import request from "supertest";
 import { app } from "../../src/app";
