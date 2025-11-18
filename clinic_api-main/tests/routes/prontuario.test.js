@@ -56,4 +56,33 @@ describe("Testes de integração para /prontuarios", async () => {
           expect(response.body[0].medico_responsavel_id).toBe(1);
           expect(response.body[0].paciente_id).toBe(1);
         });
+
+        test("Post /usuarios", async () => {
+          const newUser = {
+            nome: "Gabriel Faria",
+            email: "gabriel@email.com",
+            senha: "gabriel12345",
+            cargo: "Professor Senai"
+          }
+
+          const response = await request(app)
+          .post("/usuarios")
+          .set("Authorizathion", `Bearer ${token}`)
+          .send(newUser)
+
+          .expect(201)
+          .expect(response.body).toHaveProperty("id")
+          .expect(response.body.nome).toBe(newUser.nome)
+          .expect(response.body.email).toBe(newUser.email)
+          .expect(response.body.cargo).toBe(newUser.cargo)
+          .expect(response.body).not.toHaveProperty("senha")
+
+          const userCreated = await prismaClient.usuario.findUnique({
+            where: {email: newUser.email}
+          })
+
+          .expect(userCreated).not.toBeNull()
+          .expect(userCreated.nome).toBe(newUser.nome)
+          .expect(userCreated.senha).not.toBe(newUser.senha)
+        })
 })

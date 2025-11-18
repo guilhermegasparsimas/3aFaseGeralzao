@@ -34,7 +34,7 @@ const SideMenu = () => {
                 }
                 <button
                     onClick={toggleMenu}
-                    className='text-white hover:text-cyan-300 focus:outline-none'
+                    className='text-white hover:text-cyan-300 focus:outline-none cursor-pointer'
                 >
                     {isCollapsed ? <MdMenu size={24} /> : <MdClose size={24} />}
                 </button>

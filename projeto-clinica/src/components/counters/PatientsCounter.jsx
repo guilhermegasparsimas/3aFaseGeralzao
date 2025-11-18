@@ -8,7 +8,7 @@ const PatientsCounter = () => {
   const fetchPatients = async () => {
     const localToken = localStorage.getItem("token");
     try {
-      const response = await axios.get("http://localhost:3000/pacientes", {
+      const response = await axios.get("http://localhost:3000/patients", {
         headers: {
           Authorization: `Bearer ${localToken}`,
         },

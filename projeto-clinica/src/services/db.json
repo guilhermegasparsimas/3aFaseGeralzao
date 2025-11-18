@@ -69,7 +69,7 @@
       "rg": "958.555.555-55",
       "maritalStatus": "Solteiro",
       "phone": "48-98888-5555",
-      "email": "joao@email.com",
+      "email": "maria@email.com",
       "birthplace": "Florianópolis",
       "emergencyContact": "48-96666-5555",
       "allergies": "alergia A, alergia B",
@@ -137,6 +137,16 @@
       "medication": "benegrip",
       "dosagePrecaution": "2 vezes ao dia",
       "id": "1"
+    },
+    {
+      "id": "f36b",
+      "patientId": "2",
+      "reason": "Dor nas costas",
+      "date": "2001-01-22",
+      "time": "20:30",
+      "description": "medicação",
+      "medication": "Dosagem dosagem",
+      "dosagePrecaution": ""
     }
   ],
   "exams": [

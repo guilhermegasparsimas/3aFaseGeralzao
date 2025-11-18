@@ -8,7 +8,7 @@ const ConsultsCounter = () => {
     const fetchConsults = async () => {
         const localToken = localStorage.getItem("token")
         try {
-            const response = await axios.get("http://localhost:3000/consultas", {
+            const response = await axios.get("http://localhost:3000/consults", {
                 headers: {
                     Authorization: `Bearer ${localToken}`
                 }

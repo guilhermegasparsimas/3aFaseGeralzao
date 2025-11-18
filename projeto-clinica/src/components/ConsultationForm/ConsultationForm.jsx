@@ -165,6 +165,116 @@ const ConsultationForm = () => {
                         </p>
                        
                     </div>
+                    <form onSubmit={handleSubmit} className="space-4">
+                        <div>
+                            <label htmlFor="reason" className="block text-sm font-medium mb-1">
+                                Motivo da consulta!
+                            </label>
+                            <input type="text" 
+                            name="reason" 
+                            id="reason"
+                            value={formData.reason}
+                            onChange={handleInputChange}
+                            required
+                            className="w-full border p-2 rounded-lg focus:ring-cyan-600 outline-none"
+                            />
+                        </div>
+
+                        <div className="grid gird-cols-2 gap-4">
+                            <div>
+                            <label htmlFor="date" className="block text-sm font-medium mb-1">
+                                Data:
+                            </label>
+                            <input type="date" 
+                            name="date" 
+                            id="date"
+                            value={formData.date}
+                            onChange={handleInputChange}
+                            required
+                            className="w-full border p-2 rounded-lg focus:ring-cyan-600 outline-none"
+                            />
+                            </div>
+
+                            <div>
+                            <label htmlFor="time" className="block text-sm font-medium mb-1">
+                                Horário:
+                            </label>
+                            <input type="time" 
+                            name="time" 
+                            id="time"
+                            value={formData.time}
+                            onChange={handleInputChange}
+                            required
+                            className="w-full border p-2 rounded-lg focus:ring-cyan-600 outline-none"
+                            />
+                            </div>
+
+                        </div>
+
+                        <div>
+                            <label htmlFor="description" className="block text-sm font-medium mb-1">
+                                Descrição do problema::
+                            </label>
+
+                            <textarea name="description" 
+                            id="description"
+                            value={formData.description}
+                            onChange={handleInputChange}
+                            rows='3'
+                            required
+                            className="w-full border p-2 rounded-lg focus:ring-cyan-600 outline-none"
+                            >                               
+                            </textarea>
+                            </div>
+
+                            <div>
+                            <label htmlFor="medication" className="block text-sm font-medium mb-1">
+                                Medicação Receitada:
+                            </label>
+                            <input type="text" 
+                            name="medication" 
+                            id="medication"
+                            value={formData.medication}
+                            onChange={handleInputChange}
+                            required
+                            className="w-full border p-2 rounded-lg focus:ring-cyan-600 outline-none"
+                            />
+                        </div>
+
+                            <div>
+                            <label htmlFor="dosage" className="block text-sm font-medium mb-1">
+                                Dosagem:
+                            </label>
+
+                            <textarea name="description" 
+                            id="dosage"
+                            value={formData.dosage}
+                            onChange={handleInputChange}
+                            rows='3'
+                            required
+                            className="w-full border p-2 rounded-lg focus:ring-cyan-600 outline-none"
+                            >                               
+                            </textarea>
+                            </div>
+
+                            {/* Botões */}
+                            <div className="flex justify-end gap-3 pt-4">
+                                <button type="button"
+                                onClick={handleCloseModal}
+                                className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition cursor-pointer"
+                                >
+                                    Cancelar
+                                </button>
+
+                                <button type="submit"
+                                disable={isSaving}
+                                className="px-4 py-2 bg-cyan-700 text-white rounded-lg hover:bg-cyan-600 cursor-pointer disabled:opacity-50 transition"
+                                >
+                                    {isSaving ? "Salvando...":"Salvar"}
+                                </button>
+                            </div>
+                                      
+                    </form>
                     </>
                 )}
             </Modal>
