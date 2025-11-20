@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router'
+import { Link, NavLink, useNavigate } from 'react-router'
 import { MdDashboard, MdExitToApp, MdMenu, MdClose } from 'react-icons/md'
 import { FaUserPlus, FaListAlt, FaCalendarCheck } from 'react-icons/fa'
 import { useAuth } from '../../contexts/AuthContext'
@@ -39,17 +39,27 @@ const SideMenu = () => {
                     {isCollapsed ? <MdMenu size={24} /> : <MdClose size={24} />}
                 </button>
             </div>
-            {/* Menu */}
+            {/* Menu 
+                 <NavLink to="/" end className={({ isActive }) => isActive ? "text-blue-600 font-bold" : "text-gray-800"}>
+                    Home
+                </NavLink>
+            
+            */}
             <nav className='flex-1 p-4 space-y-4 overflow-y-auto'>
                 <ul className='space-y-3'>
                     <li>
-                        <Link
+                        {/* <Link
                             to="/dashboard"
                             className='flex items-center gap-3 hover:text-cyan-300'
                         >
                             <MdDashboard size={20} />
                             {!isCollapsed && <span>Início</span>}
-                        </Link>
+                        </Link> */}
+
+                        <NavLink to="/dashboard"  className={({ isActive }) => isActive ? 'flex items-center gap-3 hover:text-cyan-400 text-cyan-300' : 'flex items-center gap-3 text-white hover:text-cyan-400'}>
+                            <MdDashboard size={20} />
+                            {!isCollapsed && <span>Início</span>}
+                        </NavLink>
                     </li>
 
                     {!isCollapsed &&
@@ -57,23 +67,17 @@ const SideMenu = () => {
                     }
 
                     <li>
-                        <Link
-                            to="/prontuarios"
-                            className='flex items-center gap-3 hover:text-cyan-300'
-                        >
-                            <FaListAlt size={20} />
+                    <NavLink to="/prontuarios"  className={({ isActive }) => isActive ? 'flex items-center gap-3 hover:text-cyan-400 text-cyan-300' : 'flex items-center gap-3 text-white hover:text-cyan-400'}>
+                            <MdDashboard size={20} />
                             {!isCollapsed && <span>Prontuários</span>}
-                        </Link>
+                        </NavLink>
                     </li>
 
                     <li>
-                        <Link
-                            to="/pacientes"
-                            className='flex items-center gap-3 hover:text-cyan-300'
-                        >
-                            <FaUserPlus size={20} />
+                    <NavLink to="/pacientes"  className={({ isActive }) => isActive ? 'flex items-center gap-3 hover:text-cyan-400 text-cyan-300' : 'flex items-center gap-3 text-white hover:text-cyan-400'}>
+                            <MdDashboard size={20} />
                             {!isCollapsed && <span>Pacientes</span>}
-                        </Link>
+                        </NavLink>
                     </li>
 
                     {!isCollapsed &&
@@ -81,23 +85,17 @@ const SideMenu = () => {
                     }
 
                     <li>
-                        <Link
-                            to="/consultas"
-                            className='flex items-center gap-3 hover:text-cyan-300'
-                        >
-                            <FaCalendarCheck size={20} />
+                    <NavLink to="/consultas"  className={({ isActive }) => isActive ? 'flex items-center gap-3 hover:text-cyan-400 text-cyan-300' : 'flex items-center gap-3 text-white hover:text-cyan-400'}>
+                            <MdDashboard size={20} />
                             {!isCollapsed && <span>Consultas</span>}
-                        </Link>
+                        </NavLink>
                     </li>
 
                     <li>
-                        <Link
-                            to="/exames"
-                            className='flex items-center gap-3 hover:text-cyan-300'
-                        >
-                            <FaListAlt size={20} />
+                    <NavLink to="/exames"  className={({ isActive }) => isActive ? 'flex items-center gap-3 hover:text-cyan-400 text-cyan-300' : 'flex items-center gap-3 text-white hover:text-cyan-400'}>
+                            <MdDashboard size={20} />
                             {!isCollapsed && <span>Exames</span>}
-                        </Link>
+                        </NavLink>
                     </li>
                 </ul>
 

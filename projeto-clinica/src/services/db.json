@@ -115,29 +115,37 @@
         "neighborhood": "",
         "reference": ""
       }
+    },
+    {
+      "id": "43e0",
+      "fullName": "Gabriel Barcellos",
+      "gender": "masculino",
+      "birthdate": "2001-02-20",
+      "cpf": "125.125.475-90",
+      "rg": "7519456",
+      "maritalStatus": "solteiro(a)",
+      "phone": "(48) 99194-2222",
+      "email": "gabrielbarcellos@email.com",
+      "birthplace": "Brasileiro",
+      "emergencyContact": "(48) 99191-9191",
+      "allergies": "alergia a dipirona",
+      "specialCare": "Cuidar do paciente com carinho",
+      "healthInsurance": "sc saude",
+      "insuranceNumber": "1254184",
+      "insuranceValidity": "2027-01-20",
+      "address": {
+        "cep": "88162-246",
+        "city": "Biguaçu",
+        "state": "SC",
+        "street": "Rua Domingos Antônio Zimmermann",
+        "number": "190",
+        "complement": "apartamendo",
+        "neighborhood": "Jardim Janaína",
+        "reference": "residencial portal das montanhas"
+      }
     }
   ],
   "consults": [
-    {
-      "patientId": "1",
-      "reason": "gripe",
-      "date": "27-07-2025",
-      "time": "15:30",
-      "description": "dores de cabeça e coriza",
-      "medication": "benegrip",
-      "dosagePrecaution": "2 vezes ao dia",
-      "id": "1"
-    },
-    {
-      "patientId": "1",
-      "reason": "dor de cabeça",
-      "date": "27-07-2025",
-      "time": "15:30",
-      "description": "dores de cabeça e coriza",
-      "medication": "benegrip",
-      "dosagePrecaution": "2 vezes ao dia",
-      "id": "1"
-    },
     {
       "id": "f36b",
       "patientId": "2",
@@ -147,6 +155,16 @@
       "description": "medicação",
       "medication": "Dosagem dosagem",
       "dosagePrecaution": ""
+    },
+    {
+      "id": "4812",
+      "patientId": "1",
+      "reason": "fdafd",
+      "date": "2025-11-19",
+      "time": "12:20",
+      "description": "fdasdfsf",
+      "medication": "dfasdfa",
+      "dosagePrecaution": "sdfasfda"
     }
   ],
   "exams": [

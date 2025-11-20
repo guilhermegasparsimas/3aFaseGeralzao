@@ -9,7 +9,7 @@ const MedicalRecordList = ()=>{
     const fetchPatients = async () => {
         const token = localStorage.getItem("token")
         try{
-            const response = await axios.get("http://localhost:3000/pacientes", {
+            const response = await axios.get("http://localhost:3000/patients", {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -31,7 +31,10 @@ const MedicalRecordList = ()=>{
     const filteredPatients = patients.filter((patient)=>{
         return(
             patient.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            patient.id.toString().includes(searchTerm)
+            patient.allergies.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            patient.id.toString().includes(searchTerm) ||
+            patient.phone.toString().includes(searchTerm) ||
+            patient.healthInsurance.toLowerCase().includes(searchTerm.toLowerCase()) 
         )
     })
 

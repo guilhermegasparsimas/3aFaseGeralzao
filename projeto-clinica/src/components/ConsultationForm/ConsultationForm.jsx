@@ -242,13 +242,13 @@ const ConsultationForm = () => {
                         </div>
 
                             <div>
-                            <label htmlFor="dosage" className="block text-sm font-medium mb-1">
+                            <label htmlFor="dosagePrecaution" className="block text-sm font-medium mb-1">
                                 Dosagem:
                             </label>
 
-                            <textarea name="description" 
-                            id="dosage"
-                            value={formData.dosage}
+                            <textarea name="dosagePrecaution" 
+                            id="dosagePrecaution"
+                            value={formData.dosagePrecaution}
                             onChange={handleInputChange}
                             rows='3'
                             required
