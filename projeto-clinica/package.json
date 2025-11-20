@@ -11,6 +11,9 @@
     "server": "npx json-server src/services/db.json"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.3.5",
     "@tailwindcss/vite": "^4.1.13",
     "accordion": "^3.0.2",
     "axios": "^1.12.2",

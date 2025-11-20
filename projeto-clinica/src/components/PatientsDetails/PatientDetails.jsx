@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-// import Accordion from '@mui/material/Accordion';
-// import AccordionDetails from '@mui/material/AccordionDetails';
-// import AccordionSummary from '@mui/material/AccordionSummary';
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
 
 const PatientDetails = () => {
     const { id } = useParams()
@@ -219,51 +219,7 @@ hover:bg-gray-100 transition"
                             <p><strong>Dosagem e Precauções:</strong>
                                 {c.dosagePrecautions}</p>
 
-                            {/* <div className='flex gap-3 mt-3'>
-                                <Accordion>
-                                    <AccordionSummary
-                                        expandIcon={<ExpandMoreIcon />}
-                                        aria-controls="panel1-content"
-                                        id="panel1-header"
-                                    >
-                                        <Typography component="span">Accordion 1</Typography>
-                                    </AccordionSummary>
-                                    <AccordionDetails>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                        malesuada lacus ex, sit amet blandit leo lobortis eget.
-                                    </AccordionDetails>
-                                </Accordion>
-                                <Accordion>
-                                    <AccordionSummary
-                                        expandIcon={<ExpandMoreIcon />}
-                                        aria-controls="panel2-content"
-                                        id="panel2-header"
-                                    >
-                                        <Typography component="span">Accordion 2</Typography>
-                                    </AccordionSummary>
-                                    <AccordionDetails>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                        malesuada lacus ex, sit amet blandit leo lobortis eget.
-                                    </AccordionDetails>
-                                </Accordion>
-                                <Accordion defaultExpanded>
-                                    <AccordionSummary
-                                        expandIcon={<ExpandMoreIcon />}
-                                        aria-controls="panel3-content"
-                                        id="panel3-header"
-                                    >
-                                        <Typography component="span">Accordion Actions</Typography>
-                                    </AccordionSummary>
-                                    <AccordionDetails>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                        malesuada lacus ex, sit amet blandit leo lobortis eget.
-                                    </AccordionDetails>
-                                    <AccordionActions>
-                                        <Button>Cancel</Button>
-                                        <Button>Agree</Button>
-                                    </AccordionActions>
-                                </Accordion>
-                            </div> */}
+                            
                             <div className="flex gap-3 mt-3">
                                 <button
                                     onClick={() => handleEditConsult(c)}
